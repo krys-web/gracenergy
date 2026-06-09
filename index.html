@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gracenergy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo-container">
+            <div class="logo-mock">
+                <img src="img/logo.png" alt="Logo Gracenergy" class="logo-img">
+            </div>
+        </a>
+        <nav class="nav-menu" id="nav-menu">
+            <a href="index.html" class="nav-link" data-key="nav-home">Inicio</a>
+            <a href="aplicaciones.html" class="nav-link" data-key="nav-applications">Aplicaciones</a>
+            <a href="nosotros.html" class="nav-link" data-key="nav-about">Nosotros</a>
+            <a href="soluciones.html" class="nav-link" data-key="nav-solutions">Soluciones</a>
+            <a href="productos.html" class="nav-link" data-key="nav-products">Productos</a>
+            <a href="catalogos.html" class="nav-link" data-key="nav-catalogos">Catálogos</a>
+            <a href="contacto.html" class="nav-link" data-key="nav-contact">Contactos</a>
+        </nav>
+        
+        <div class="search-container">
+            <form id="global-search-form" autocomplete="off">
+                <input type="text" id="search-input" placeholder="Buscar..." required>
+                <button type="submit" id="search-btn">🔍</button>
+            </form>
+            <div id="search-results-dropdown" class="search-results-box"></div>
+        </div>
+
+        <div class="lang-selector">
+            <button class="lang-btn" id="lang-btn">🌐 <span id="lang-text">EN</span></button>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+    <section id="inicio" class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-slide active">
+                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1920" alt="Slide 1">
+                <div class="carousel-caption">
+                    <h1 data-key="hero-title">Infraestructura que no se detiene</h1>
+                    <p data-key="hero-desc">Resiliencia energética escalable y transformación digital.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1920" alt="Slide 2">
+                <div class="carousel-caption">
+                    <h1>Energía Solar Avanzada</h1>
+                    <p>Sistemas fotovoltaicos eficientes de alta capacidad industrial.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1548345680-f5475ea5df84?q=80&w=1920" alt="Slide 3">
+                <div class="carousel-caption">
+                    <h1>Carga Vehicular DC</h1>
+                    <p>Infraestructura de carga rápida para flotas comerciales modernas.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1920" alt="Slide 4">
+                <div class="carousel-caption">
+                    <h1>Soporte de Ingeniería</h1>
+                    <p>Sistemas diseñados bajo estándares rigurosos de resiliencia.</p>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920" alt="Slide 5">
+                <div class="carousel-caption">
+                    <h1>Sistemas de Almacenamiento</h1>
+                    <p>Baterías de alta densidad para continuidad de operaciones.</p>
+                </div>
+            </div>
+
+            <button class="carousel-arrow prev" id="prevBtn">&#10094;</button>
+            <button class="carousel-arrow next" id="nextBtn">&#10095;</button>
+        </div>
+    </section>
+
+    <section id="soluciones" class="features-vertical section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-key="solutions-title">Nuestras Soluciones Industriales</h2>
+                <div class="bar"></div>
+            </div>
+
+            <div class="vertical-list">
+                <div class="vertical-item">
+                    <div class="item-img-box">
+                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=600" alt="Almacenamiento">
+                    </div>
+                    <div class="item-info">
+                        <h3>01. Almacenamiento de Energía ESS</h3>
+                        <p>Diseño e implementación de contenedores de baterías integrados para mitigar picos de demanda eléctrica y garantizar el suministro continuo durante cortes críticos del sistema eléctrico.</p>
+                    </div>
+                </div>
+
+                <div class="vertical-item row-reverse">
+                    <div class="item-img-box">
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=600" alt="Estaciones de carga">
+                    </div>
+                    <div class="item-info">
+                        <h3>02. Infraestructura de Carga Rápida</h3>
+                        <p>Estaciones de carga rápida en corriente continua (DC) aptas para entornos logísticos pesados, flotas de autobuses urbanos y vehículos corporativos de alta demanda transaccional.</p>
+                    </div>
+                </div>
+
+                <div class="vertical-item">
+                    <div class="item-img-box">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600" alt="Señalética">
+                    </div>
+                    <div class="item-info">
+                        <h3>03. Smart Signage & Displays</h3>
+                        <p>Pantallas y tótems digitales inteligentes de nivel industrial con alta luminosidad, preparados para exteriores y gestión remota de contenidos publicitarios o informativos en tiempo real.</p>
+                    </div>
+                </div>
+
+                <div class="vertical-item row-reverse">
+                    <div class="item-img-box">
+                        <img src="https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?q=80&w=600" alt="Automatización">
+                    </div>
+                    <div class="item-info">
+                        <h3>04. Transformación y Control Industrial</h3>
+                        <p>Desarrollo e ingeniería avanzada para la digitalización de puntos de distribución energética, telemetría y automatización de subestaciones críticas con interfaces HMI adaptadas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Redes Sociales</h3>
+                <div class="footer-bar"></div>
+                <p>Síguenos en nuestras plataformas digitales para conocer las últimas actualizaciones en ingeniería y proyectos.</p>
+                <div class="social-links">
+                    <a href="#" class="social-item">LinkedIn</a>
+                    <a href="#" class="social-item">Facebook</a>
+                    <a href="#" class="social-item">Twitter / X</a>
+                    <a href="#" class="social-item">Instagram</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <div class="footer-bar"></div>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#aplicaciones">Aplicaciones</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#soluciones">Soluciones</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Catálogos y Servicios</h3>
+                <div class="footer-bar"></div>
+                <p>Descarga la documentación técnica de nuestros equipos y soluciones modulares.</p>
+                <ul class="catalog-list">
+                    <li><a href="#" class="download-link">📁 Catálogo General Energía 2026</a></li>
+                    <li><a href="#" class="download-link">📁 Ficha Técnica Cargadores DC</a></li>
+                    <li><a href="#" class="download-link">⚙️ Ingeniería y Mantenimiento</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container bottom-flex">
+                <p>&copy; 2026 - Gracenergy. Todos los derechos reservados.</p>
+                <div class="desarrollado">Desarrollado por KRYSWEB</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- boton de whastapp-->
+
+<a href="https://wa.me/593999999999?text=Hola,%20solicito%20información%20sobre%20sus%20soluciones%20industriales." 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   aria-label="Contacto por WhatsApp">
+    <svg viewBox="0 0 32 32" class="whatsapp-icon">
+        <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825.737 5.58 2.141 8.005l-2.141 7.995 8.176-2.145c2.351 1.28 5.019 1.956 7.824 1.956 8.837 0 16-7.163 16-16s-7.163-16-16-16zm8.932 22.371c-.367 1.033-1.833 2.871-3.791 2.871-.527 0-1.077-.137-1.623-.412-2.315-1.139-4.733-3.765-6.071-5.749-1.259-1.871-2.028-3.957-2.028-5.597 0-2.373 1.503-3.535 2.316-3.535.424 0 .825.104 1.151.411.416.395.992 1.536 1.127 1.831.18.395.127.811-.127 1.139-.175.22-.367.452-.563.68-.216.241-.448.513-.191.956.491.851 1.536 2.379 2.544 3.235 1.056.896 1.947 1.173 2.411 1.173.456 0 .741-.245.991-.536.291-.341.876-1.123 1.216-1.503.351-.395.746-.32 1.173-.137.436.185 2.551 1.192 2.668 1.281.123.085.201.275.147.536z"/>
+    </svg>
+</a>
+
+    <script src="app.js"></script>
+</body>
+</html>

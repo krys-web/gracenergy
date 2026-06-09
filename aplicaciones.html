@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gracenergy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo-container">
+            <div class="logo-mock">
+                <img src="img/logo.png" alt="Logo Gracenergy" class="logo-img">
+            </div>
+        </a>
+        <nav class="nav-menu" id="nav-menu">
+            <a href="index.html" class="nav-link" data-key="nav-home">Inicio</a>
+            <a href="aplicaciones.html" class="nav-link" data-key="nav-applications">Aplicaciones</a>
+            <a href="nosotros.html" class="nav-link" data-key="nav-about">Nosotros</a>
+            <a href="soluciones.html" class="nav-link" data-key="nav-solutions">Soluciones</a>
+            <a href="productos.html" class="nav-link" data-key="nav-products">Productos</a>
+            <a href="catalogos.html" class="nav-link" data-key="nav-catalogos">Catálogos</a>
+            <a href="contacto.html" class="nav-link" data-key="nav-contact">Contactos</a>
+        </nav>
+        
+        <div class="search-container">
+            <form id="global-search-form" autocomplete="off">
+                <input type="text" id="search-input" placeholder="Buscar..." required>
+                <button type="submit" id="search-btn">🔍</button>
+            </form>
+            <div id="search-results-dropdown" class="search-results-box"></div>
+        </div>
+
+        <div class="lang-selector">
+            <button class="lang-btn" id="lang-btn">🌐 <span id="lang-text">EN</span></button>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+    <a href="https://wa.me/593999999999?text=Hola,%20solicito%20información%20sobre%20sus%20soluciones%20industriales." 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   aria-label="Contacto por WhatsApp">
+    <svg viewBox="0 0 32 32" class="whatsapp-icon">
+        <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825.737 5.58 2.141 8.005l-2.141 7.995 8.176-2.145c2.351 1.28 5.019 1.956 7.824 1.956 8.837 0 16-7.163 16-16s-7.163-16-16-16zm8.932 22.371c-.367 1.033-1.832 1.884-2.527 1.959-.696.074-1.574.136-2.544-.175-1.025-.329-2.34-.84-3.953-1.554-6.84-3.031-7.859-9.15-8.196-9.613-.338-.464-2.512-3.415-2.512-6.509 0-3.094 1.574-4.594 2.159-5.144.478-.451 1.061-.645 1.574-.645.184 0 .348.009.496.015.437.021.656.05.943.681.365.801 1.253 3.126 1.363 3.355.111.229.184.496.037.792-.148.297-.223.479-.444.742-.222.262-.468.586-.667.787-.222.223-.456.465-.197.913.259.447 1.151 1.928 2.464 3.125 1.687 1.538 3.111 2.015 3.553 2.242.441.227.703.189.962-.113.259-.301 1.126-1.332 1.426-1.785.3-.452.6-.377.994-.225.394.151 2.505 1.203 2.929 1.417.424.213.702.321.806.502.106.181.106 1.045-.261 2.078z" fill="#FFF"/>
+    </svg>
+</a>
+      <script src="app.js"></script>
+</body>
+</html>
