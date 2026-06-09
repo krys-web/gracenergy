@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "title_es": "Catálogo General Gracenergy Brochure 2026",
+    "title_en": "General Catalogue Gracenergy Brochure 2026",
+    "description_es": "Folleto corporativo completo con especificaciones de toda nuestra línea modular de potencia.",
+    "description_en": "Complete corporate brochure with specifications for our entire modular power line.",
+    "category": "catalogos",
+    "categoryLabel_es": "Catálogo",
+    "categoryLabel_en": "Catalogue",
+    "fileSize": "4.2 MB",
+    "format": "PDF",
+    "filePath": "pdf/Gracenergy_Brochure_ES-2.pdf"
+  },
+    {
+    "id": 2,
+    "title_es": "Flayer Gracenergy Brochure 2026",
+    "title_en": "Flayer Gracenergy Brochure 2026",
+    "description_es": "Resiliencia energética escalable desde el hogar hasta la gran escala industrial con tecnología de almacenamiento de vanguardia.",
+    "description_en": "Scalable energy resilience from home to large industrial scale with cutting-edge storage technology.",
+    "category": "catalogos",
+    "categoryLabel_es": "Catálogo",
+    "categoryLabel_en": "Catalogue",
+    "fileSize": "4.2 MB",
+    "format": "PDF",
+    "filePath": "pdf/Gracenergy_Flyer_ES.pdf"
+  }
+]
