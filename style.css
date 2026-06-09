@@ -5,6 +5,8 @@
     --light-color: #f8f9fa;
     --text-color: #333333;
     --transition-fast: all 0.3s ease;
+    --logo-blue: rgba(0, 86, 179, 0.95);  
+    --logo-green: rgba(40, 167, 69, 0.95); 
 }
 
 * {
@@ -41,15 +43,27 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    /* Cambiado de transparent a un fondo oscuro traslúcido para legibilidad universal */
-    background-color: rgba(17, 17, 17, 0.9); 
+    
+    /* Degradado vertical sutil y claro: Blanco -> Azul Cielo -> Verde Menta */
+    background: linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(173, 216, 230, 0.85) 50%, /* Azul claro / Soft Blue */
+        rgba(144, 238, 144, 0.85) 100% /* Verde claro / Mint Green */
+    );
+    
     transition: var(--transition-fast);
     padding: 15px 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra más suave */
 }
 
 .navbar.scrolled {
-    background-color: rgba(11, 11, 11, 0.98);
+    background: linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 0.98) 0%, 
+        rgba(190, 225, 245, 0.95) 50%, 
+        rgba(175, 240, 175, 0.95) 100%
+    );
     padding: 12px 0;
 }
 
@@ -92,18 +106,18 @@ body {
 }
 
 .nav-link {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(17, 17, 17, 0.8); /* Cambiado de blanco a gris oscuro */
     text-decoration: none;
     font-weight: 600;
-    font-size: 14px;
-    text-transform: uppercase;
+    font-size: 12px;            
+    text-transform: none;       
     transition: var(--transition-fast);
     position: relative;
     padding: 5px 0;
 }
 
 .nav-link:hover, .nav-link.active {
-    color: #ffffff;
+    color: var(--primary-color); /* Cambia al azul principal al pasar el cursor */
 }
 
 /* Efecto Línea Hover */
@@ -315,8 +329,8 @@ body {
 
 .lang-btn {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: #ffffff;
+    border: 1px solid rgba(17, 17, 17, 0.3); /* Borde oscuro sutil */
+    color: #111111; /* Texto oscuro */
     padding: 6px 12px;
     border-radius: 4px;
     font-family: 'Montserrat', sans-serif;
@@ -330,8 +344,8 @@ body {
 }
 
 .lang-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: #111111;
 }
 
 /* Ajuste cuando el navbar tiene fondo oscuro (scrolled) */
@@ -347,13 +361,14 @@ body {
     }
 }
 
-/* --- SEGMENTO 1: CARRUSEL --- */
+/* --- SEGMENTO 1: CARRUSEL OPTIMIZADO (Más claro, nítido y corto) --- */
 .carousel-section {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 65vh; /* REDUCIDO: De 100vh a 65vh para disminuir la altura */
+    margin-top: 70px; /* Evita que el menú tricolor tape el inicio de las imágenes */
     overflow: hidden;
-    background-color: #000;
+    background-color: #f8f9fa;
 }
 
 .carousel-container {
@@ -381,8 +396,15 @@ body {
 .carousel-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    filter: brightness(0.4);
+    /* Asegura que la imagen cubra el espacio manteniendo su relación de aspecto original */
+    object-fit: cover; 
+    object-position: center center;
+    
+    /* Evita la degradación visual al reescalar */
+    image-rendering: auto; 
+    
+    /* MEJORA: Un ligero aumento de contraste ayuda a que los detalles se vean más definidos */
+    filter: brightness(0.85) contrast(1.1); 
 }
 
 .carousel-caption {
@@ -395,23 +417,38 @@ body {
     z-index: 3;
     width: 85%;
     max-width: 800px;
+    
+    /* MEJORA: Fondo sutil oscuro protector para asegurar legibilidad sobre imágenes claras */
+    background: rgba(0, 0, 0, 0.45); 
+    padding: 30px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px); /* Suaviza el fondo de la imagen detrás del texto */
 }
 
 .carousel-caption h1 {
-    font-size: 44px;
-    margin-bottom: 15px;
+    font-size: 38px; /* Ajustado proporcionalmente a la nueva altura */
+    margin-bottom: 12px;
     font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
 }
 
+.carousel-caption p {
+    font-size: 16px;
+    font-weight: 400;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+/* Flechas de navegación adaptadas al nuevo alto */
 .carousel-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.3);
     color: #ffffff;
     border: none;
-    font-size: 24px;
-    padding: 16px;
+    font-size: 20px;
+    padding: 12px 16px;
     cursor: pointer;
     z-index: 10;
     transition: var(--transition-fast);
@@ -424,6 +461,27 @@ body {
 
 .prev { left: 20px; }
 .next { right: 20px; }
+
+/* Ajuste responsivo para que mantenga proporciones óptimas en móviles */
+@media (max-width: 768px) {
+    .carousel-section {
+        height: 45vh; /* Más bajo en dispositivos móviles */
+    }
+    .carousel-caption {
+        padding: 15px;
+        width: 90%;
+    }
+    .carousel-caption h1 {
+        font-size: 24px;
+    }
+    .carousel-caption p {
+        font-size: 13px;
+    }
+    .carousel-arrow {
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+}
 
 
 /* --- SEGMENTO 2: IMÁGENES VERTICALES CON DETALLE --- */
@@ -450,10 +508,13 @@ body {
 
 .item-img-box {
     flex: 1;
-    max-width: 500px;
-    height: 300px;
+    max-width: 420px; /* Reducido de 500px a 420px para hacerlas más compactas */
+    aspect-ratio: 4 / 3; /* Fuerza una proporción estándar perfecta para fotografía industrial */
+    height: auto; /* Eliminamos el hardcode de 300px */
     overflow: hidden;
     border-radius: 6px;
+    background-color: #f0f0f0; /* Fondo gris sutil mientras carga la imagen */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .item-img-box img {
@@ -461,6 +522,9 @@ body {
     height: 100%;
     object-fit: cover;
     transition: var(--transition-fast);
+    /* Previene el desenfoque durante la animación de escala (hover) */
+    backface-visibility: hidden;
+    transform: translateZ(0); 
 }
 
 .vertical-item:hover .item-img-box img {
@@ -626,7 +690,7 @@ body {
     }
 }
 
-/* --- BOTÓN FLOTANTE DE WHATSAPP --- */
+/* --- BOTÓN FLOTANTE DE WHATSAPP MODERNIZADO --- */
 .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -634,41 +698,95 @@ body {
     bottom: 30px;
     right: 30px;
     background-color: #25d366;
-    color: #FFF;
+    color: #ffffff;
     border-radius: 50%;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 9999; /* Asegura que quede por encima de mapas, footers y carruseles */
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    z-index: 9999; 
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Contenedor interno para aislar la animación de pulso */
+.whatsapp-pulse-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 50%;
+}
+
+/* Efecto de onda expansiva profesional */
+.whatsapp-pulse-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #25d366;
+    border-radius: 50%;
+    z-index: -1;
+    animation: waPulse 2.5s infinite;
+    opacity: 0.4;
+}
+
+/* Icono optimizado para evitar deformaciones vectoriales */
 .whatsapp-icon {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
+    fill: #ffffff;
+    display: block;
+    object-fit: contain; /* Fuerza a mantener la proporción nativa del teléfono */
+    transition: transform 0.3s ease;
 }
 
-/* Efecto Hover interactivo */
+/* Efectos de interacción (Hover) */
 .whatsapp-float:hover {
-    transform: scale(1.1) translateY(-5px);
+    transform: scale(1.08) translateY(-5px);
     background-color: #20ba5a;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 9px 28px rgba(32, 186, 90, 0.6);
 }
 
-/* Adaptación para pantallas más pequeñas */
+.whatsapp-float:hover .whatsapp-icon {
+    transform: rotate(8deg) scale(1.05);
+}
+
+/* Animación de Ondas */
+@keyframes waPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.15;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Adaptación Responsiva Consistente */
 @media (max-width: 768px) {
     .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
+        width: 52px;
+        height: 52px;
+        bottom: 25px;
+        right: 25px;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
     }
     
     .whatsapp-icon {
-        width: 26px;
-        height: 26px;
+        width: 28px;
+        height: 28px;
+    }
+    
+    .whatsapp-pulse-wrapper::before {
+        animation: waPulse 3s infinite;
     }
 }
 
@@ -682,8 +800,8 @@ body {
 
 #global-search-form {
     display: flex;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 20px;
     padding: 2px 10px;
     transition: var(--transition-fast);
@@ -698,7 +816,7 @@ body {
     background: transparent;
     border: none;
     outline: none;
-    color: #ffffff;
+    color: #111111; /* Texto del buscador en oscuro */
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
     padding: 5px;
@@ -707,7 +825,7 @@ body {
 }
 
 #search-input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(0, 0, 0, 0.5); 
 }
 
 /* El buscador se expande levemente al escribir */
@@ -718,7 +836,7 @@ body {
 #search-btn {
     background: none;
     border: none;
-    color: #ffffff;
+    color: #111111;
     cursor: pointer;
     font-size: 13px;
     padding: 0 5px;
@@ -804,4 +922,13 @@ body {
         width: 100%;
         left: 0;
     }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    /* Optimiza el renderizado del navegador para evitar bordes ruidosos o pixelados */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
