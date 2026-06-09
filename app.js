@@ -242,3 +242,141 @@ document.addEventListener('DOMContentLoaded', () => {
         startInterval();
     }
 })();
+
+// ==========================================
+    // 9. SISTEMA DE CATÁLOGOS CON CARGA ASÍNCRONA JSON
+    // ==========================================
+    const catalogGrid = document.getElementById('catalog-grid');
+    const categorySelect = document.getElementById('category-select');
+    const catalogSearch = document.getElementById('catalog-search');
+    const clearLocalSearch = document.getElementById('clear-local-search');
+
+    if (catalogGrid && categorySelect && catalogSearch) {
+        let docsDatabase = [];
+
+        // Textos locales del componente para el soporte dinámico de idioma
+        const catalogUiTexts = {
+            es: {
+                noResults: "No se encontraron documentos que coincidan con los criterios seleccionados.",
+                btnView: "Visualizar",
+                btnDownload: "Descargar",
+                errorMsg: "Error al cargar el catálogo técnico. Por favor, intente más tarde."
+            },
+            en: {
+                noResults: "No documents found matching the selected criteria.",
+                btnView: "View",
+                btnDownload: "Download",
+                errorMsg: "Error loading the technical catalogue. Please try again later."
+            }
+        };
+
+        function renderDocuments(documents) {
+            catalogGrid.innerHTML = '';
+            
+            // Detecta el idioma activo de forma segura ('es' por defecto)
+            const lang = (typeof currentLang !== 'undefined') ? currentLang : 'es';
+            const texts = catalogUiTexts[lang] || catalogUiTexts.es;
+
+            if (documents.length === 0) {
+                catalogGrid.innerHTML = `<div class="catalog-no-results"><p>${texts.noResults}</p></div>`;
+                return;
+            }
+
+            documents.forEach(doc => {
+                const card = document.createElement('div');
+                card.className = `file-card type-${doc.category}`;
+                
+                // Mapeo dinámico de datos del JSON según idioma
+                const title = lang === 'en' ? (doc.title_en || doc.title_es) : doc.title_es;
+                const description = lang === 'en' ? (doc.description_en || doc.description_es) : doc.description_es;
+                const categoryLabel = lang === 'en' ? (doc.categoryLabel_en || doc.categoryLabel_es) : doc.categoryLabel_es;
+
+                card.innerHTML = `
+                    <div class="file-info">
+                        <span class="file-tag tag-${doc.category}">${categoryLabel}</span>
+                        <h3>${title}</h3>
+                        <p>${description}</p>
+                    </div>
+                    <div>
+                        <div class="file-meta">
+                            <span><strong>Formato:</strong> ${doc.format}</span>
+                            <span><strong>Tamaño:</strong> ${doc.fileSize}</span>
+                        </div>
+                        <div class="file-actions">
+                            <a href="${doc.filePath}" target="_blank" class="btn-file btn-view">${texts.btnView}</a>
+                            <a href="${doc.filePath}" download class="btn-file btn-download">${texts.btnDownload}</a>
+                        </div>
+                    </div>
+                `;
+                catalogGrid.appendChild(card);
+            });
+        }
+
+        function filterCatalog() {
+            const selectedCategory = categorySelect.value;
+            const searchQuery = catalogSearch.value.toLowerCase().trim();
+
+            if (clearLocalSearch) {
+                if (searchQuery.length > 0) {
+                    clearLocalSearch.style.display = 'block';
+                } else {
+                    clearLocalSearch.style.display = 'none';
+                }
+            }
+
+            const filteredDocs = docsDatabase.filter(doc => {
+                const lang = (typeof currentLang !== 'undefined') ? currentLang : 'es';
+                const title = lang === 'en' ? (doc.title_en || doc.title_es) : doc.title_es;
+                const description = lang === 'en' ? (doc.description_en || doc.description_es) : doc.description_es;
+
+                const matchesCategory = (selectedCategory === 'all' || doc.category === selectedCategory);
+                const matchesSearch = (
+                    title.toLowerCase().includes(searchQuery) || 
+                    description.toLowerCase().includes(searchQuery)
+                );
+                return matchesCategory && matchesSearch;
+            });
+
+            renderDocuments(filteredDocs);
+        }
+
+        async function loadCatalogData() {
+            try {
+                const response = await fetch('data/catalogos.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                docsDatabase = await response.json();
+                renderDocuments(docsDatabase);
+            } catch (error) {
+                console.error("Error cargando el archivo catalogos.json: ", error);
+                const lang = (typeof currentLang !== 'undefined') ? currentLang : 'es';
+                const texts = catalogUiTexts[lang] || catalogUiTexts.es;
+                catalogGrid.innerHTML = `<div class="catalog-no-results"><p>${texts.errorMsg}</p></div>`;
+            }
+        }
+
+        // Asignación de listeners de eventos interactivos
+        categorySelect.addEventListener('change', filterCatalog);
+        catalogSearch.addEventListener('input', filterCatalog);
+
+        if (clearLocalSearch) {
+            clearLocalSearch.addEventListener('click', () => {
+                catalogSearch.value = '';
+                filterCatalog();
+                catalogSearch.focus();
+            });
+        }
+
+        // Ejecución inicial de la carga asíncrona
+        loadCatalogData();
+        
+        // Acople seguro al conmutador global de idiomas
+        if (typeof changeLanguage === 'function') {
+            const nativeChangeLanguage = changeLanguage;
+            changeLanguage = function(lang) {
+                nativeChangeLanguage(lang);
+                filterCatalog();
+            };
+        }
+    }
