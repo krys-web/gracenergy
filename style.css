@@ -1162,3 +1162,8 @@ img {
         max-width: 100%;
     }
 }
+
+.webmail-link:hover {
+    color: var(--primary-color) !important;
+    transform: scale(1.05);
+}

@@ -21,12 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const translations = {
         es: {
-            "nav-home": "Inicio",
+"nav-home": "Inicio",
             "nav-applications": "Aplicaciones",
             "nav-about": "Nosotros",
             "nav-solutions": "Soluciones",
             "nav-products": "Productos",
-            "nav-catalogos": "Catálogos",
+            "nav-catalogos": "Descargas",
             "nav-contact": "Contactos",
             "hero-title": "Infraestructura que no se detiene",
             "hero-desc": "Resiliencia energética escalable, carga vehicular de alta potencia y transformación digital.",
@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
             "card3-desc": "Integración eficiente de generación solar, térmica y almacenamiento distribuido."
         },
         en: {
-            "nav-home": "Home",
+"nav-home": "Home",
             "nav-applications": "Applications",
             "nav-about": "About Us",
             "nav-solutions": "Solutions",
             "nav-products": "Products",
-            "nav-catalogos": "Catalogues",
+            "nav-catalogos": "Downloads",
             "nav-contact": "Contact",
             "hero-title": "Infrastructure that never stops",
             "hero-desc": "Scalable energy resilience, high-power electric vehicle charging, and digital transformation.",
