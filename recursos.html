@@ -58,56 +58,35 @@
     </div>
 </header>
 
-   <section id="soluciones" class="features-vertical section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nuestras Soluciones Industriales</h2>
-                <div class="bar"></div>
+
+<section class="catalog-section section-padding">
+    <div class="container">
+        <div class="section-header">
+            <h2 data-key="catalog-main-title">Centro de Recursos</h2>
+            <div class="bar"></div>
+        </div>
+
+        <div class="catalog-controls">
+            <div class="filter-box">
+                <label for="category-select" data-key="filter-label">Filtrar por Tipo:</label>
+                <select id="category-select" class="catalog-select">
+                    <option value="all" data-key="opt-all">Todos los Documentos</option>
+                    <option value="catalogos" data-key="opt-cat">Catálogos</option>
+                    <option value="brochure" data-key="opt-fichas">Brochure</option>
+                    <option value="manuales" data-key="opt-manuales">Manuales de Operación</option>
+                </select>
             </div>
-
-            <div class="vertical-list">
-                <div class="vertical-item">
-                    <div class="item-img-box">
-                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=600" alt="Almacenamiento">
-                    </div>
-                    <div class="item-info">
-                        <h3>01. Almacenamiento de Energía ESS</h3>
-                        <p>Diseño e implementación de contenedores de baterías integrados para mitigar picos de demanda eléctrica y garantizar el suministro continuo durante cortes críticos del sistema eléctrico.</p>
-                    </div>
-                </div>
-
-                <div class="vertical-item row-reverse">
-                    <div class="item-img-box">
-                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=600" alt="Estaciones de carga">
-                    </div>
-                    <div class="item-info">
-                        <h3>02. Infraestructura de Carga Rápida</h3>
-                        <p>Estaciones de carga rápida en corriente continua (DC) aptas para entornos logísticos pesados, flotas de autobuses urbanos y vehículos corporativos de alta demanda transaccional.</p>
-                    </div>
-                </div>
-
-                <div class="vertical-item">
-                    <div class="item-img-box">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600" alt="Señalética">
-                    </div>
-                    <div class="item-info">
-                        <h3>03. Smart Signage & Displays</h3>
-                        <p>Pantallas y tótems digitales inteligentes de nivel industrial con alta luminosidad, preparados para exteriores y gestión remota de contenidos publicitarios o informativos en tiempo real.</p>
-                    </div>
-                </div>
-
-                <div class="vertical-item row-reverse">
-                    <div class="item-img-box">
-                        <img src="https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?q=80&w=600" alt="Automatización">
-                    </div>
-                    <div class="item-info">
-                        <h3>04. Transformación y Control Industrial</h3>
-                        <p>Desarrollo e ingeniería avanzada para la digitalización de puntos de distribución energética, telemetría y automatización de subestaciones críticas con interfaces HMI adaptadas.</p>
-                    </div>
-                </div>
+            
+            <div class="search-box-local">
+                <input type="text" id="catalog-search" placeholder="Buscar por modelo o palabra clave..." autocomplete="off">
+                <span class="search-clear" id="clear-local-search">&times;</span>
             </div>
         </div>
-    </section>
+
+        <div id="catalog-grid" class="catalog-grid">
+            </div>
+    </div>
+</section>
 
     <!-- boton de whastapp-->
 

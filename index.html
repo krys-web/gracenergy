@@ -6,7 +6,7 @@
     <title>Gracenergy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,15 +18,23 @@
                 <img src="img/logo.png" alt="Logo Gracenergy" class="logo-img">
             </div>
         </a>
-        <nav class="nav-menu" id="nav-menu">
-            <a href="index.html" class="nav-link" data-key="nav-home">Inicio</a>
-            <a href="aplicaciones.html" class="nav-link" data-key="nav-applications">Aplicaciones</a>
-            <a href="nosotros.html" class="nav-link" data-key="nav-about">Nosotros</a>
-            <a href="soluciones.html" class="nav-link" data-key="nav-solutions">Soluciones</a>
-            <a href="productos.html" class="nav-link" data-key="nav-products">Productos</a>
-            <a href="descargas.html" class="nav-link" data-key="nav-catalogos">Descargas</a>
-            <a href="contacto.html" class="nav-link" data-key="nav-contact">Contactos</a>
-        </nav>
+        
+        <!-- CONTENEDOR DE NAVEGACIÓN + FRASE ABAJO -->
+        <div class="nav-and-stripe-wrapper">
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="aplicaciones.html" class="nav-link">Aplicaciones</a>
+                <a href="soluciones.html" class="nav-link">Soluciones</a>
+                <a href="productos.html" class="nav-link">Productos</a>
+                <a href="recursos.html" class="nav-link">Recursos</a>
+                <a href="contacto.html" class="nav-link">Contacto</a>
+            </nav>
+            
+            <!-- SE MOVIÓ AQUÍ: Queda vinculada directamente debajo de los links anteriores -->
+            <div class="corporate-stripe">
+                <p class="stripe-text">Infraestructura que no se detiene</p>
+            </div>
+        </div>
         
         <div class="search-container">
             <form id="global-search-form" autocomplete="off">
@@ -36,114 +44,163 @@
             <div id="search-results-dropdown" class="search-results-box"></div>
         </div>
 
-        <div class="webmail-container" style="display: flex; align-items: center; margin-right: 10px;">
-            <a href="https://gracenergyweb.com/webmail/log-in" target="_blank" rel="noopener noreferrer" class="webmail-link" title="Webmail" style="display: flex; align-items: center; text-decoration: none; color: #111111; transition: var(--transition-fast);">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 20px; height: 20px; fill: currentColor;">
+        <div class="webmail-container">
+            <a href="https://gracenergyweb.com/webmail/log-in" target="_blank" rel="noopener noreferrer" class="webmail-btn" title="Webmail">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/>
                 </svg>
             </a>
         </div>
-<!--
-        <div class="lang-selector">
-            <button class="lang-btn" id="lang-btn">🌐 <span id="lang-text">EN</span></button>
-        </div>  -->
+
         <button class="hamburger" id="hamburger" aria-label="Abrir menú">
             <span></span><span></span><span></span>
         </button>
     </div>
 </header>
 
-    <section id="inicio" class="carousel-section">
-        <div class="carousel-container">
-            <div class="carousel-slide active">
-                <img src="img/banner1.jpeg">
-                <div class="carousel-caption">
-                    <h1 data-key="hero-title">Infraestructura que no se detiene</h1>
-                    <p data-key="hero-desc">Resiliencia energética escalable y transformación digital.</p>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <img src="img/banner2.jpg">
-                <div class="carousel-caption">
-                    <h1>Energía Solar Avanzada</h1>
-                    <p>Sistemas fotovoltaicos eficientes de alta capacidad industrial.</p>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <img src="img/banner3.jpg">
-                <div class="carousel-caption">
-                    <h1>Carga Vehicular DC</h1>
-                    <p>Infraestructura de carga rápida para flotas comerciales modernas.</p>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <img src="img/banner4.jpg">
-                <div class="carousel-caption">
-                    <h1>Soporte de Ingeniería</h1>
-                    <p>Sistemas diseñados bajo estándares rigurosos de resiliencia.</p>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <img src="img/banner5.jpg">
-                <div class="carousel-caption">
-                    <h1>Sistemas de Almacenamiento</h1>
-                    <p>Baterías de alta densidad para continuidad de operaciones.</p>
+
+    <section class="hero-arc-section" id="inicio">
+        <div class="hero-arc-container">
+            
+            <div class="arc-carousel-wrapper">
+                <div class="arc-carousel" id="arc-carousel">
+                    <div class="arc-item active" data-index="0">
+                        <img src="img/Gracenergy Solum ESS EV charger Plaza.png" alt="Unidades de potencia EV">
+                    </div>
+                    <div class="arc-item" data-index="1">
+                        <img src="img/Gracenergy Solum ESS.png" alt="Unidades de almacenamiento ESS">
+                    </div>
+                    <div class="arc-item" data-index="2">
+                        <img src="img/Gracenergy Solum pick by light.png" alt="Señal digital ESL">
+                    </div>
+                    <div class="arc-item" data-index="3">
+                        <img src="img/Ecover airport.png" alt="Purificadores de aire">
+                    </div>
+                    <div class="arc-item" data-index="4">
+                        <img src="img/Ecover metro.png" alt="Soluciones">
+                    </div>
                 </div>
             </div>
 
-            <button class="carousel-arrow prev" id="prevBtn">&#10094;</button>
-            <button class="carousel-arrow next" id="nextBtn">&#10095;</button>
+            <div class="arc-details-wrapper">
+                <div class="arc-text-slider">
+                    <div class="arc-detail-content active" data-index="0">
+                        <span class="detail-tag">Unidades EV</span>
+                        <h1>Unidades de potencia para carga para vehículos eléctricos EV</h1>
+                        <p></p>
+                    </div>
+                    <div class="arc-detail-content" data-index="1">
+                        <span class="detail-tag">Unidades ESS</span>
+                        <h1>Unidades de almacenamiento de energía ESS para uso residencial, industrial y gubernamental</h1>
+                        <p></p>
+                    </div>
+                    <div class="arc-detail-content" data-index="2">
+                        <span class="detail-tag">Señaletica digital ESL</span>
+                        <h1>Señalética digital inteligente con etiquetas y pantallas de uso comercial. ESL + Signage.</h1>
+                        <p></p>
+                    </div>
+                    <div class="arc-detail-content" data-index="3">
+                        <span class="detail-tag">Purificadores de aire</span>
+                        <h1>Purificadores y filtros de aire para áreas grandes.</h1>
+                        <p></p>
+                    </div>
+                    <div class="arc-detail-content" data-index="4">
+                        <span class="detail-tag">Soluciones</span>
+                        <h1>Soluciones para el sector residencial, comercial e industrial.</h1>
+                        <p>Tecnología para almacenamiento de energía, movilidad eléctrica, señalética digital y purificación del aire.</p>
+                    </div>
+                </div>
+
+                <div class="arc-controls-vertical">
+                    <button class="arc-v-btn" id="arc-prev-btn" aria-label="Imagen Anterior">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2l105.4 105.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/>
+                        </svg>
+                    </button>
+                    <button class="arc-v-btn" id="arc-next-btn" aria-label="Siguiente Imagen">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <section id="soluciones" class="features-vertical section-padding">
+
+    <section class="about-section section-padding" id="nosotros">
         <div class="container">
+            
             <div class="section-header">
-                <h2 data-key="solutions-title">Nuestras Soluciones Industriales</h2>
+                <h2>Nosotros</h2>
                 <div class="bar"></div>
             </div>
 
-            <div class="vertical-list">
-                <div class="vertical-item">
-                    <div class="item-img-box">
-                        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=600" alt="Almacenamiento">
+            <div class="about-grid">
+                <div class="about-card animate-on-scroll">
+                    <div class="about-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M256 0a256 256 0 1 1 0 512 256 256 0 1 1 0-512zm0 96a160 160 0 1 0 0 320 160 160 0 1 0 0-320zm0 96a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                        </svg>
                     </div>
-                    <div class="item-info">
-                        <h3>01. Almacenamiento de Energía ESS</h3>
-                        <p>Diseño e implementación de contenedores de baterías integrados para mitigar picos de demanda eléctrica y garantizar el suministro continuo durante cortes críticos del sistema eléctrico.</p>
-                    </div>
+                    <h3>Misión</h3>
+                    <p>Impulsar la adopción de infraestructura tecnológica de primer nivel — almacenamiento de energía, movilidad eléctrica, digitalización y purificación del aire — en América Latina. Operamos como socio de ciclo completo con respaldo técnico local.</p>
                 </div>
 
-                <div class="vertical-item row-reverse">
-                    <div class="item-img-box">
-                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=600" alt="Estaciones de carga">
+                <div class="about-card animate-on-scroll">
+                    <div class="about-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                            <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.4 78.1-95.4 92.9-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64a64 64 0 1 0 0 128 64 64 0 1 0 0-128z"/>
+                        </svg>
                     </div>
-                    <div class="item-info">
-                        <h3>02. Infraestructura de Carga Rápida</h3>
-                        <p>Estaciones de carga rápida en corriente continua (DC) aptas para entornos logísticos pesados, flotas de autobuses urbanos y vehículos corporativos de alta demanda transaccional.</p>
-                    </div>
+                    <h3>Visión</h3>
+                    <p>Ser el integrador de referencia de tecnología coreana en infraestructura crítica para América Latina, reconocidos por la integridad de nuestro equipo y la calidad técnica de nuestras soluciones.</p>
                 </div>
 
-                <div class="vertical-item">
-                    <div class="item-img-box">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600" alt="Señalética">
+                <div class="about-card animate-on-scroll">
+                    <div class="about-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 34.3 31.9 30.2 55.4c-11.6 67.4-45.1 191.6-113 267.4c-35.6 39.7-74.2 68.4-102.1 88.6c-5.2 3.8-11.6 5.9-18.1 5.9s-12.9-2.1-18.1-5.9c-27.9-20.2-66.4-48.9-102.1-88.6c-67.9-75.7-101.4-200-113-267.4c-4.1-23.5 8.2-46.1 30.2-55.4L242.6 2.9C246.8 1 251.4 0 256 0zm0 64L74.2 140.5c3.6 22.4 17.2 81.6 44.7 138.5C148.9 339.7 197.6 398.3 256 444c58.4-45.7 107.1-104.3 137.1-165c27.5-56.9 41.1-116.1 44.7-138.5L256 64z"/>
+                        </svg>
                     </div>
-                    <div class="item-info">
-                        <h3>03. Smart Signage & Displays</h3>
-                        <p>Pantallas y tótems digitales inteligentes de nivel industrial con alta luminosidad, preparados para exteriores y gestión remota de contenidos publicitarios o informativos en tiempo real.</p>
-                    </div>
-                </div>
-
-                <div class="vertical-item row-reverse">
-                    <div class="item-img-box">
-                        <img src="https://images.unsplash.com/photo-1535557142533-b5e1cc6e2a5d?q=80&w=600" alt="Automatización">
-                    </div>
-                    <div class="item-info">
-                        <h3>04. Transformación y Control Industrial</h3>
-                        <p>Desarrollo e ingeniería avanzada para la digitalización de puntos de distribución energética, telemetría y automatización de subestaciones críticas con interfaces HMI adaptadas.</p>
-                    </div>
+                    <h3>Valores</h3>
+                    <p>Integridad · Conocimiento técnico · Respaldo post-venta · Compromiso regional.</p>
                 </div>
             </div>
+
+            <div class="about-grid m-top-40">
+                <div class="about-card animate-on-scroll">
+                    <div class="about-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path d="M159.3 5.4c7.8-7.3 19.9-7.2 27.7 .1c27.6 25.9 53.5 53.8 77.7 84c11-14.4 23.5-27.4 37.3-38.9c7.7-6.4 19.1-6.1 26.5 .9C384 103.4 416 172.1 416 248c0 101.6-82.4 184-184 184c-12.7 0-25-1.3-36.9-3.7c-4.6-.9-9.4-.3-13.6 1.7L114.3 463c-10.2 4.9-22.3-.5-25.2-11.7c-3.6-14-5.4-28.7-5.4-43.8c0-11.9 1.1-23.5 3.2-34.7c-40.4-38.8-65.1-94-65.1-154.8c0-54.8 20.6-104.8 54.3-142.8c7.1-8 19-9.5 27.8-3.4c26.1 18.1 49.3 41.1 69.1 68.3c15-28.8 33-55.8 53.7-80.8L159.3 5.4zM232 416a168 168 0 1 0 0-336 168 168 0 1 0 0 336z"/>
+                        </svg>
+                    </div>
+                    <h3>Propósito</h3>
+                    <p>Llevar tecnología coreana de primer nivel a América Latina con respaldo local, sin intermediarios genéricos.</p>
+                </div>
+
+                <div class="about-card animate-on-scroll">
+                    <div class="about-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                            <path d="M0 256L28.5 28c2-16 15.6-28 31.8-28H224c16.3 0 30.1 12.3 31.9 28.5L288 256H160L384 256l-28.5 228c-2 16-15.6 28-31.8 28H160c-16.3 0-30.1-12.3-31.9-28.5L96 256H224L0 256z"/>
+                        </svg>
+                    </div>
+                    <h3>Diferenciador</h3>
+                    <p>Equipo con más de 12 años de experiencia en Corea del Sur y liderazgo gremial en energía e hidrocarburos en México y América Latina.</p>
+                </div>
+
+                <div class="about-card animate-on-scroll">
+                    <div class="about-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                            <path d="M323.4 85.2l-96.8 78.4c-16.1 13-19.2 36.2-7 53.1c11.8 16.3 34.3 20.4 51.1 9.3l108-72c11.3-7.5 16.6-21.1 13.1-34.1c-3.5-13-14.7-22.1-28.4-22.7c-13.7-.7-27.4 5.3-40 18zm-147 167c-12.1-15.5-34.3-18.1-49.5-6c-13.6 10.8-17.1 29.9-8.4 44.7l64.4 109.5c8.7 14.8 25.4 23.3 42.5 22.3c17.1-1 32.2-11.2 38.6-27.1l39.1-97.8c6.4-16-1.5-34.1-17.8-40.4c-16.3-6.3-34.7 1.6-40.8 17.8l-23 57.5-49.1-83.5zM0 192C0 139 43 96 96 96l115.2 0c14.2 0 27.6 6.3 36.7 17.2l35 42c6 7.3 14.9 11.5 24.3 11.5l11.5 0c9.4 0 18.2-4.2 24.3-11.5l35-42c9.1-10.9 22.5-17.2 36.7-17.2L544 96c53 0 96 43 96 96l0 224c0 53-43 96-96 96l-115.2 0c-14.2 0-27.6-6.3-36.7-17.2l-35-42c-6-7.3-14.9-11.5-24.3-11.5l-11.5 0c-9.4 0-18.2 4.2-24.3 11.5l-35 42c-9.1 10.9-22.5 17.2-36.7 17.2L96 480c-53 0-96-43-96-96L0 192z"/>
+                        </svg>
+                    </div>
+                    <h3>Socio Tecnológico</h3>
+                    <p>Ingeniería del proyecto, suministro internacional, instalación certificada, mantenimiento preventivo y monitoreo remoto. Sede en México, equipos locales en cada mercado.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -189,24 +246,22 @@
         <div class="footer-bottom">
             <div class="container bottom-flex">
                 <p>&copy; 2026 - Gracenergy. Todos los derechos reservados.</p>
-                <div class="desarrollado">Desarrollado por KRYSWEB | <a href="https://www.krysweb.com/">Visitar Sitio</a></div>
+                <!--<div class="desarrollado">Desarrollado por KRYSWEB | <a href="https://www.krysweb.com/" target="_blank">Visitar Sitio</a></div>-->
             </div>
         </div>
-    </footer>
+    </footer> 
 
-    <!-- boton de whastapp-->
-
-<a href="https://wa.me/593999999999?text=Hola,%20solicito%20información%20sobre%20sus%20soluciones%20industriales." 
-   class="whatsapp-float" 
-   target="_blank" 
-   rel="noopener noreferrer" 
-   aria-label="Contacto por WhatsApp">
-    <div class="whatsapp-pulse-wrapper">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="whatsapp-icon">
-            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
-        </svg>
-    </div>
-</a>
+    <a href="https://wa.me/525578735901?text=Hola,%20solicito%20información%20sobre%20sus%20soluciones%20industriales." 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Contacto por WhatsApp">
+        <div class="whatsapp-pulse-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="whatsapp-icon">
+                <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+            </svg>
+        </div>
+    </a>
 
     <script src="app.js"></script>
 </body>
