@@ -1,8 +1,3 @@
-/**
- * GRACENERGY CLONE - CORE APPLICATION SCRIPT
- * Gestión de interfaz: Navbar interactiva, Menú Móvil, Buscador Global, Media Luna y Descarga de Catálogos.
- */
-
 document.addEventListener('DOMContentLoaded', () => {
     
     // ==========================================
@@ -28,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 3. CONTROL DEL MENÚ MÓVIL \n    // ==========================================
+    // 3. CONTROL DEL MENÚ MÓVIL \n    
+    // ==========================================
+
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
@@ -286,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         loadCatalogData();
-    } // <-- Aquí se cerraba incorrectamente la función del DOMContentLoaded antes de tiempo, rompiendo el script.
+    } 
 
     // ==========================================
     // 8. ANIMACIÓN ON-SCROLL PARA SECCIÓN NOSOTROS
@@ -340,3 +337,64 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // ==========================================
+    // 10. ANIMACIÓN SCROLL REVEAL PARA LAS 4 ÁREAS
+    // ==========================================
+    const revealItems = document.querySelectorAll('.reveal-item');
+
+    if (revealItems.length > 0) {
+        const revealOptions = {
+            root: null,
+            threshold: 0.15, 
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Agrega un pequeño retraso escalonado (stagger) para un efecto más profesional
+                    setTimeout(() => {
+                        entry.target.classList.add('is-visible');
+                    }, index * 100); 
+                    
+                    // Deja de observar el elemento una vez animado para optimizar rendimiento
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealItems.forEach(item => {
+            revealObserver.observe(item);
+        });
+    }
+    // ================================================================
+    // 11. ANIMACIÓN SCROLL REVEAL PARA LAS 4 ÁREAS - PAGINA SOLUCIONES
+    // ================================================================
+    
+    document.addEventListener("DOMContentLoaded", () => {
+    // Seleccionamos todos los elementos que queremos animar
+    const items = document.querySelectorAll('.fade-in-scroll');
+
+    // Configuración del observador
+    const observerOptions = {
+        root: null, 
+        rootMargin: "0px", 
+        threshold: 0.15 
+    };
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // Si el elemento entra en el viewport
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Asignamos el observador a cada uno de los bloques de soluciones
+    items.forEach(item => {
+        scrollObserver.observe(item);
+    });
+});

@@ -167,7 +167,7 @@ body {
 }
 
 .webmail-btn {
-    background: #0b192c; /* Tono azul oscuro elegante que combina con los botones de control */
+    background: #0b192c; 
     border: none;
     color: #ffffff;
     padding: 8px 14px;
@@ -187,7 +187,7 @@ body {
 }
 
 .webmail-btn:hover {
-    background-color: #0F8DED; /* Resalta en azul brillante en hover */
+    background-color: #0F8DED; 
     box-shadow: 0 4px 12px rgba(15, 141, 237, 0.3);
     transform: translateY(-1px);
 }
@@ -822,40 +822,43 @@ img {
 }
 
 /* ==========================================================================
-   FRANJA CORPORATIVA INTEGRADA DEBAJO DE LA NAVEGACIÓN
+   FRANJA CORPORATIVA INTEGRADA COMO TÍTULO SUPERIOR
    ========================================================================== */
-/* Envuelve al menú de navegación y a la frase para apilarlos verticalmente */
+
+/* Envuelve al título y al menú de navegación apilándolos verticalmente */
 .nav-and-stripe-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;  /* Centra horizontalmente la frase respecto a los links de arriba */
-    gap: 4px;             /* Espacio sutil entre los links de navegación y la frase */
+    align-items: center;
+    gap: 10px; 
 }
 
 .corporate-stripe {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent; 
-    box-shadow: none;              
+    background-color: transparent;
+    box-shadow: none;
     width: auto;
+    margin-bottom: 2px; /* Espaciado extra hacia abajo */
 }
 
 .stripe-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;               
-    font-weight: 600;              
-    color: #0F8DED;                
-    letter-spacing: 0.5px;
-    text-transform: none;          
-    white-space: nowrap;           
-    line-height: 1.1;
+    font-family: var(--font-main);
+    font-size: 14px; 
+    font-weight: 800; 
+    color: #0F8DED;   
+    letter-spacing: 1.2px; 
+    text-transform: uppercase; 
+    white-space: nowrap;
+    line-height: 1.2;
+    pointer-events: none; 
 }
 
-/* Modificamos la regla de ocultado para que afecte al wrapper en móviles */
+/* Ocultado para conservar espacio limpio en resoluciones móviles */
 @media (max-width: 992px) {
     .corporate-stripe {
-        display: none;             /* Sigue ocultándose en tablets/móviles para no romper la barra[cite: 5] */
+        display: none;
     }
 }
 
@@ -1121,7 +1124,7 @@ img {
    ESTILOS DE LA SECCIÓN NOSOTROS (GRID DE 3 COLUMNAS)
    ========================================================================== */
 .about-section {
-    background-color: #f8fafc; /* Fondo gris claro limpio idéntico al de contacto */
+    background-color: #f8fafc; 
 }
 
 .about-grid {
@@ -1153,7 +1156,7 @@ img {
 .about-icon {
     width: 60px;
     height: 60px;
-    background-color: rgba(15, 141, 237, 0.1); /* Tono azul corporativo suave */
+    background-color: rgba(15, 141, 237, 0.1); 
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1165,7 +1168,7 @@ img {
 .about-icon svg {
     width: 26px;
     height: 26px;
-    fill: #0F8DED; /* Color principal azul brillante */
+    fill: #0F8DED; 
     transition: var(--transition-fast);
 }
 
@@ -1193,7 +1196,7 @@ img {
 /* Ajustes de responsividad para Tablets y Celulares */
 @media (max-width: 992px) {
     .about-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 Columnas en tabletas */
+        grid-template-columns: repeat(2, 1fr); 
     }
     .about-grid.m-top-40 {
         margin-top: 30px;
@@ -1202,7 +1205,7 @@ img {
 
 @media (max-width: 768px) {
     .about-grid {
-        grid-template-columns: 1fr; /* 1 Sola columna en pantallas móviles */
+        grid-template-columns: 1fr; 
         gap: 20px;
     }
     .about-grid.m-top-40 {
@@ -1345,7 +1348,7 @@ img {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 30px;
-    align-items: stretch; /* Obliga a que todas las tarjetas tengan idéntica altura */
+    align-items: stretch; 
 }
 
 /* Tarjetas Remasterizadas */
@@ -1357,7 +1360,7 @@ img {
     padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Alinea contenido arriba y botones abajo uniformemente */
+    justify-content: space-between; 
     position: relative;
     overflow: hidden;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
@@ -1415,7 +1418,7 @@ img {
 
 /* Envoltura y Botones de Acción de Alineación Fija */
 .file-actions-wrapper {
-    margin-top: auto; /* Empuja el bloque hacia la base sin importar la longitud del texto superior */
+    margin-top: auto; 
     width: 100%;
 }
 
@@ -1498,7 +1501,7 @@ img {
    ========================================================================== */
 .main-footer {
     background-color: var(--dark-color);
-    color: #a0aec0; /* Un gris un poco más claro para mejor accesibilidad y lectura */
+    color: #a0aec0; 
     padding: 80px 0 0 0;
     font-family: var(--font-main);
 }
@@ -1521,7 +1524,7 @@ img {
 .footer-bar {
     width: 35px;
     height: 3px;
-    background-color: #0F8DED; /* Azul brillante corporativo */
+    background-color: #0F8DED; 
     margin-bottom: 25px;
     border-radius: 2px;
 }
@@ -1561,7 +1564,7 @@ img {
 }
 
 .social-btn.linkedin:hover {
-    background-color: #0077b5; /* Azul LinkedIn oficial */
+    background-color: #0077b5; 
     border-color: #0077b5;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
@@ -1735,7 +1738,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0b192c; /* Acoplado al color corporativo secundario de los controles */
+    background-color: #0b192c; 
     border: none;
     padding: 18px 25px;
     color: #ffffff;
@@ -1748,7 +1751,7 @@ img {
 }
 
 .supplier-toggle-btn:hover {
-    background-color: #0F8DED; /* Resalta en azul brillante al pasar el cursor */
+    background-color: #0F8DED; 
 }
 
 .supplier-toggle-btn .toggle-icon {
@@ -1758,7 +1761,7 @@ img {
 
 /* Estado activo del botón y rotación del icono */
 .supplier-toggle-btn.active {
-    background-color: #0056b3; /* Color primario cuando el panel está visible */
+    background-color: #0056b3; 
 }
 
 .supplier-toggle-btn.active .toggle-icon {
@@ -1774,7 +1777,7 @@ img {
 }
 
 .collapsible-content.open {
-    max-height: 5000px; /* Suficiente para contener las subsecciones con imágenes */
+    max-height: 5000px; 
     opacity: 1;
 }
 
@@ -1792,7 +1795,7 @@ img {
 /* Banner que ocupa todo el ancho de la página */
 .subsection-banner {
     width: 100%;
-    height: 450px; /* Altura ideal de impacto visual */
+    height: 450px;
     overflow: hidden;
     background-color: #f0f4f8;
 }
@@ -1805,7 +1808,7 @@ img {
 }
 
 .supplier-subsection:hover .subsection-banner img {
-    transform: scale(1.02); /* Animación sutil de zoom */
+    transform: scale(1.02); 
 }
 
 
@@ -1846,7 +1849,7 @@ img {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 14px; /* Separación entre filas */
+    gap: 14px; 
 }
 
 .subsection-spec-list li {
@@ -1864,7 +1867,7 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #0F8DED; /* Azul brillante que usas en los recursos */
+    color: #0F8DED; 
     font-weight: 700;
     font-size: 14px;
     margin-top: 2px;
@@ -1883,4 +1886,128 @@ img {
     .subsection-spec-list li {
         font-size: 14px;
     }
+}
+
+/* ==========================================================================
+   NUEVA SECCIÓN: 4 ÁREAS DE FUNCIONALIDAD CON ANIMACIÓN PROFESIONAL
+   ========================================================================== */
+.features-section {
+    background-color: #ffffff; 
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.feature-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid #eeeeee;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Efecto hover profesional de elevación */
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 86, 179, 0.1); 
+}
+
+.feature-img-box {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.feature-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.feature-card:hover .feature-img-box img {
+    transform: scale(1.06); 
+}
+
+.feature-info {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-info h3 {
+    font-size: 19px;
+    color: var(--dark-color); 
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.feature-info p {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.6;
+}
+
+/* --- ESTADOS INICIALES PARA ANIMACIÓN (SCROLL REVEAL) --- */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1), 
+                transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1);
+    will-change: transform, opacity;
+}
+
+/* Estado visible activado por JS */
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- RESPONSIVIDAD (MOBILE-FIRST / RESPONSIVE) --- */
+@media (max-width: 1200px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+    
+    .feature-info {
+        padding: 20px;
+    }
+}
+
+/* Estado inicial de los elementos (ocultos y desplazados hacia abajo) */
+.fade-in-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform; 
+}
+
+/* Estado activo que se añadirá con JavaScript cuando aparezca en pantalla */
+.fade-in-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Justificar el texto de las descripciones en la sección de soluciones */
+#soluciones .item-info p {
+    text-align: justify;
+    text-justify: inter-word; 
 }
