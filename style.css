@@ -86,6 +86,14 @@ body {
     color: #1A2332; 
     text-decoration: none;
     letter-spacing: 1px;
+    max-width: 240px;
+    transition: max-width 0.3s ease;
+}
+
+.logo-img {
+    width: 100%;      
+    height: auto;     
+    display: block;
 }
 
 .nav-menu {
@@ -821,10 +829,16 @@ img {
     }
 }
 
+/* ==========================================================================
+   REEMPLAZAR POR COMPLETO TU BLOQUE @media (max-width: 768px) ACTUAL
+   ========================================================================== */
 @media (max-width: 768px) {
-    /* ==========================================================================
-       1. MENÚ HAMBURGUESA: Estructura, Visibilidad y Animación a X
-       ========================================================================== */
+    /* 1. LOGO DE LA EMPRESA (Ajuste aún más pequeño exclusivo para móviles) */
+    .logo-mock {
+        max-width: 130px; /* El logo se encoge un poco más en pantallas móviles */
+    }
+
+    /* 2. MENÚ HAMBURGUESA: Estructura, Visibilidad y Animación a X */
     .hamburger { 
         display: flex; 
         cursor: pointer;
@@ -833,7 +847,7 @@ img {
         flex-direction: column;
         gap: 6px;
         padding: 5px;
-        /* CRÍTICO: Debe ser el elemento más alto (1005) para poder hacer clic en la X y cerrar el menú */
+        /* Capa superior máxima (1005) para poder presionar la X sobre el menú abierto */
         z-index: 1005; 
     }
 
@@ -861,10 +875,7 @@ img {
         transform: rotate(-45deg) translate(1px, -1px);
     }
 
-
-    /* ==========================================================================
-       2. MENÚ DESPLEGABLE MÓVIL
-       ========================================================================== */
+    /* 3. MENÚ DESPLEGABLE MÓVIL (Fondo blanco y Texto Azul Corporativo) */
     .nav-menu {
         position: fixed;
         top: 0;
@@ -877,7 +888,7 @@ img {
         justify-content: center;
         align-items: center;
         transition: var(--transition-fast);
-        /* CORRECCIÓN: Capa intermedia alta (1000) para cubrir el resto de la web */
+        /* Capa intermedia (1000) para cubrir el resto de la web */
         z-index: 1000;
         padding: 40px 0;
     }
@@ -886,7 +897,7 @@ img {
         right: 0; 
     }
 
-    /* Estilos para las letras del menú móvil */
+    /* Estilos de visibilidad para los enlaces del menú móvil */
     .nav-menu .nav-link {
         display: block;
         width: 100%;
@@ -906,23 +917,16 @@ img {
         color: #003d82 !important; 
     }
 
-
-    /* ==========================================================================
-       3. ELEMENTOS QUE DEBEN QUEDAR DETRÁS DEL MENÚ
-       ========================================================================== */
+    /* 4. ELEMENTOS QUE DEBEN ENVIARSE DETRÁS DEL MENÚ */
     
     /* Ícono del sobre de correo electrónico (Webmail en la barra) */
     .webmail-container { 
         margin-right: 15px; 
-        /* CORRECCIÓN: Se le asigna una capa inferior a la del menú (1000) */
         position: relative; 
-        z-index: 990; 
+        z-index: 990; /* Capa por debajo de la del menú (1000) */
     }
 
-
-    /* ==========================================================================
-       4. REESTRUCTURACIÓN Y RESPONSIVIDAD GENERAL (Tus estilos originales)
-       ========================================================================== */
+    /* 5. RESPONSIVIDAD GENERAL (Tus estilos originales intactos) */
     .vertical-item, .row-reverse { 
         flex-direction: column; 
         gap: 20px; 
@@ -960,13 +964,10 @@ img {
 }
 
 /* ==========================================================================
-   5. AJUSTE APARTE: BOTÓN FLOTANTE DE WHATSAPP
+   6. AJUSTE FUERA DE LA MEDIA QUERY: BOTÓN FLOTANTE DE WHATSAPP
    ========================================================================== */
-/* Nota: Este estilo se coloca FUERA del @media query anterior para asegurar que 
-   el botón de WhatsApp respete el orden de capas tanto en móvil como en escritorio. */
 .whatsapp-float {
-    /* CORRECCIÓN: Capa inferior a la del menú móvil (1000) */
-    z-index: 995 !important; 
+    z-index: 995 !important; /* Capa por debajo de la del menú móvil (1000) */
 }
 
 /* ==========================================================================
