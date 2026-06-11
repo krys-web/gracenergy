@@ -1,93 +1,58 @@
 [
   {
     "id": 1,
-    "title_es": "Catálogo General Gracenergy Brochure 2026",
-    "title_en": "General Catalogue Gracenergy Brochure 2026",
-    "description_es": "Folleto corporativo completo con especificaciones de toda nuestra línea modular de potencia.",
-    "description_en": "Complete corporate brochure with specifications for our entire modular power line.",
+    "title_es": "Distribuidor e integrador de tecnología coreana para infraestructura crítica latinoamericana.",
+    "description_es": "Tecnología para almacenamiento de energía, movilidad eléctrica, señalética digital y purificación del aire — desplegada por un integrador con presencia regional propia.",
     "category": "brochure",
-    "categoryLabel_es": "Brochure",
-    "categoryLabel_en": "Brochure",
-    "fileSize": "4.2 MB",
-    "format": "PDF",
-    "filePath": "pdf/Gracenergy_Brochure_ES-2.pdf"
+    "filePath": "pdf/Gracenergy_Brochure_ES-2.pdf",
+    "keywords": ["tecnologia", "almacenamiento", "energia", "movilidad", "electrica", "brochure", "gracenergy"]
   },
-    {
+  {
     "id": 2,
-    "title_es": "Flayer Gracenergy Brochure 2026",
-    "title_en": "Flayer Gracenergy Brochure 2026",
-    "description_es": "Resiliencia energética escalable desde el hogar hasta la gran escala industrial con tecnología de almacenamiento de vanguardia.",
-    "description_en": "Scalable energy resilience from home to large industrial scale with cutting-edge storage technology.",
+    "title_es": "Cuatro plataformas tecnológicas listas para operar.",
+    "description_es": "Almacenamiento de Energía, Carga Vehicular, Señalética Inteligente, Purificación del Aire",
     "category": "brochure",
-    "categoryLabel_es": "Brochure",
-    "categoryLabel_en": "Brochure",
-    "fileSize": "4.2 MB",
-    "format": "PDF",
-    "filePath": "pdf/Gracenergy_Flyer_ES.pdf"
+    "filePath": "pdf/Gracenergy_Flyer_ES.pdf",
+    "keywords": ["almacenamiento de energia", "digital", "ventas", "pantallas", "brochure", "gracenergy"]
   },
-    {
+  {
     "id": 3,
-    "title_es": "Flayer Gracenergy Brochure 2026",
-    "title_en": "Flayer Gracenergy Brochure 2026",
-    "description_es": "Resiliencia energética escalable desde el hogar hasta la gran escala industrial con tecnología de almacenamiento de vanguardia.",
-    "description_en": "Scalable energy resilience from home to large industrial scale with cutting-edge storage technology.",
+    "title_es": "Distributor and integrator of Korean technology for Latin American critical infrastructure.",
+    "description_es": "Technology for energy storage, electric mobility, digital signage and air purification — deployed by an integrator with regional presence.",
     "category": "brochure",
-    "categoryLabel_es": "Brochure",
-    "categoryLabel_en": "Brochure",
-    "fileSize": "4.2 MB",
-    "format": "PDF",
-    "filePath": "pdf/DOC-20260501-WA0014.pdf"
+    "filePath": "pdf/DOC-20260501-WA0014.pdf",
+    "keywords": ["technology", "energy storage", "electric mobility", "brochure", "gracenergy"]
   },
-      {
+  {
     "id": 4,
-    "title_es": "Flayer Gracenergy Brochure 2026",
-    "title_en": "Flayer Gracenergy Brochure 2026",
+    "title_es": "Catálogo de Sistemas de Almacenamiento ESS Solum",
     "description_es": "Resiliencia energética escalable desde el hogar hasta la gran escala industrial con tecnología de almacenamiento de vanguardia.",
-    "description_en": "Scalable energy resilience from home to large industrial scale with cutting-edge storage technology.",
     "category": "catalogos",
-    "categoryLabel_es": "Catálogo",
-    "categoryLabel_en": "Catalogue",
-    "fileSize": "4.2 MB",
-    "format": "PDF",
-    "filePath": "pdf/catalogo1-ESS_SOLUM.pdf"
+    "filePath": "pdf/catalogo1-ESS_SOLUM.pdf",
+    "keywords": ["ess solum", "sistemas de almacenamiento", "baterias comerciales", "alta potencia", "gracenergy"]
   },
-    {
+  {
     "id": 5,
-    "title_es": "Flayer Gracenergy Brochure 2026",
-    "title_en": "Flayer Gracenergy Brochure 2026",
-    "description_es": "Resiliencia energética escalable desde el hogar hasta la gran escala industrial con tecnología de almacenamiento de vanguardia.",
-    "description_en": "Scalable energy resilience from home to large industrial scale with cutting-edge storage technology.",
+    "title_es": "Catálogo de Cargadores de Vehículos Eléctricos DC",
+    "description_es": "Infraestructura de carga DC de alta potencia con gestión avanzada de calor para preservar el rendimiento en operación continua.",
     "category": "catalogos",
-    "categoryLabel_es": "Catálogo",
-    "categoryLabel_en": "Catalogue",
-    "fileSize": "4.2 MB",
-    "format": "PDF",
-    "filePath": "pdf/catalogo2-Catalog_EV Charger_DC_2024.pdf"
+    "filePath": "pdf/catalogo2-Catalog_EV Charger_DC_2024.pdf",
+    "keywords": ["cargadores vehiculos electricos", "carga rapida dc", "electromovilidad", "carga vehicular", "alta potencia", "gracenergy"]
   },
-      {
+  {
     "id": 6,
-    "title_es": "Flayer Gracenergy Brochure 2026",
-    "title_en": "Flayer Gracenergy Brochure 2026",
-    "description_es": "Resiliencia energética escalable desde el hogar hasta la gran escala industrial con tecnología de almacenamiento de vanguardia.",
-    "description_en": "Scalable energy resilience from home to large industrial scale with cutting-edge storage technology.",
+    "title_es": "Catálogo de señalización digital",
+    "description_es": "Soluciones para exibiciones profesionales",
     "category": "catalogos",
-    "categoryLabel_es": "Catálogo",
-    "categoryLabel_en": "Catalogue",
-    "fileSize": "4.2 MB",
-    "format": "PDF",
-    "filePath": "pdf/catalogo3-Signage solution offering_25.04.23_spec.pdf"
+    "filePath": "pdf/catalogo3-Signage solution offering_25.04.23_spec.pdf",
+    "keywords": ["monitoreo inteligente", "software de control", "automatizacion industrial", "gracenergy"]
   },
-    {
+  {
     "id": 7,
-    "title_es": "Flayer Gracenergy Brochure 2026",
-    "title_en": "Flayer Gracenergy Brochure 2026",
-    "description_es": "Resiliencia energética escalable desde el hogar hasta la gran escala industrial con tecnología de almacenamiento de vanguardia.",
-    "description_en": "Scalable energy resilience from home to large industrial scale with cutting-edge storage technology.",
+    "title_es": "Caso de Instalación sistemas de purificación de aire",
+    "description_es": "Sistemas de purificación de alto rango que reducen significativamente virus, bacterias y partículas en suspensión en áreas de alta afluencia.",
     "category": "catalogos",
-    "categoryLabel_es": "Catálogo",
-    "categoryLabel_en": "Catalogue",
-    "fileSize": "4.2 MB",
-    "format": "PDF",
-    "filePath": "pdf/catalogo4-ecover Installation example.pdf"
+    "filePath": "pdf/catalogo4-ecover Installation example.pdf",
+    "keywords": ["instalacion", "aire", "purificacion", "gracenergy"]
   }
 ]
