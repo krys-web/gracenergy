@@ -28,8 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 3. CONTROL DEL MENÚ MÓVIL 
-    // ==========================================
+    // 3. CONTROL DEL MENÚ MÓVIL \n    // ==========================================
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
@@ -189,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 7. SISTEMA DE CATÁLOGOS CON ASYNC JSON
+    // 7. SISTEMA DE CATÁLOGOS CON ASYNC JSON (CORREGIDO Y OPTIMIZADO)
     // ==========================================
     const catalogGrid = document.getElementById('catalog-grid');
     const categorySelect = document.getElementById('category-select');
@@ -199,11 +198,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (catalogGrid && categorySelect && catalogSearch) {
         let docsDatabase = [];
 
+        // Mapeo dinámico de etiquetas limpias según la categoría
+        function getCleanLabel(category) {
+            const labels = {
+                'catalogos': 'Catálogo Técnico',
+                'brochure': 'Brochure',
+                'manuales': 'Manual de Operación'
+            };
+            return labels[category] || 'Documento';
+        }
+
         function renderDocuments(documents) {
             catalogGrid.innerHTML = '';
 
             if (documents.length === 0) {
-                catalogGrid.innerHTML = `<div class="catalog-no-results"><p>No se encontraron documentos que coincidan con los criterios seleccionados.</p></div>`;
+                catalogGrid.innerHTML = `<div class="catalog-no-results"><p>No se encontraron documentos que coincidan con los criterios seleccionados o palabras clave.</p></div>`;
                 return;
             }
 
@@ -212,16 +221,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.className = `file-card type-${doc.category}`;
                 
                 card.innerHTML = `
-                    <div class="file-info">
-                        <span class="file-tag tag-${doc.category}">${doc.categoryLabel_es}</span>
-                        <h3>${doc.title_es}</h3>
-                        <p>${doc.description_es}</p>
-                    </div>
-                    <div>
-                        <div class="file-meta">
-                            <span><strong>Formato:</strong> ${doc.format}</span>
-                            <span><strong>Tamaño:</strong> ${doc.fileSize}</span>
+                    <div class="file-content-group">
+                        <div class="file-info">
+                            <span class="file-tag tag-${doc.category}">${getCleanLabel(doc.category)}</span>
+                            <h3>${doc.title_es}</h3>
+                            <p>${doc.description_es}</p>
                         </div>
+                    </div>
+                    <div class="file-actions-wrapper">
                         <div class="file-actions">
                             <a href="${doc.filePath}" target="_blank" class="btn-file btn-view">Visualizar</a>
                             <a href="${doc.filePath}" download class="btn-file btn-download">Descargar</a>
@@ -242,9 +249,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const filteredDocs = docsDatabase.filter(doc => {
                 const matchesCategory = (selectedCategory === 'all' || doc.category === selectedCategory);
+                
+                // SEO Interno: Busca coincidencias en títulos, descripciones y en el arreglo de keywords
                 const matchesSearch = (
                     doc.title_es.toLowerCase().includes(searchQuery) || 
-                    doc.description_es.toLowerCase().includes(searchQuery)
+                    doc.description_es.toLowerCase().includes(searchQuery) ||
+                    (doc.keywords && doc.keywords.some(kw => kw.toLowerCase().includes(searchQuery)))
                 );
                 return matchesCategory && matchesSearch;
             });
@@ -276,28 +286,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         loadCatalogData();
-    }
-});
+    } // <-- Aquí se cerraba incorrectamente la función del DOMContentLoaded antes de tiempo, rompiendo el script.
 
-// ==========================================
+    // ==========================================
     // 8. ANIMACIÓN ON-SCROLL PARA SECCIÓN NOSOTROS
     // ==========================================
     const animatedCards = document.querySelectorAll('.about-card.animate-on-scroll');
 
     if (animatedCards.length > 0) {
         const animationOptions = {
-            root: null,          // Utiliza el viewport del navegador
+            root: null,
             rootMargin: '0px',
-            threshold: 0.15      // Se activa cuando el 15% de la tarjeta es visible
+            threshold: 0.15
         };
 
         const cardObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Añade la clase que dispara la transición CSS
                     entry.target.classList.add('is-visible');
-                    // Deja de observar el elemento para mejorar el rendimiento una vez animado
-                    observer.unobserve(entry.target);
+                    cardObserver.unobserve(entry.target);
                 }
             });
         }, animationOptions);
@@ -306,3 +313,30 @@ document.addEventListener('DOMContentLoaded', () => {
             cardObserver.observe(card);
         });
     }
+});
+
+// ==========================================
+    // 9. INTERACTIVIDAD DE ACORDEÓN DE PROVEEDORES
+    // ==========================================
+    const toggleButtons = document.querySelectorAll('.supplier-toggle-btn');
+
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target');
+            const targetContent = document.getElementById(targetId);
+
+            if (targetContent) {
+                // Alternar estado activo del botón (para la flecha y color)
+                button.classList.toggle('active');
+
+                // Si está colapsado, lo abrimos calculando su altura real exacta
+                if (targetContent.style.maxHeight && targetContent.style.maxHeight !== '0px') {
+                    targetContent.style.maxHeight = '0px';
+                    targetContent.style.opacity = '0';
+                } else {
+                    targetContent.style.maxHeight = targetContent.scrollHeight + 'px';
+                    targetContent.style.opacity = '1';
+                }
+            }
+        });
+    });

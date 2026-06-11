@@ -1247,3 +1247,640 @@ img {
     /* Mantenemos tus transiciones fluidas de hover adjuntando las propiedades de transformación */
     transition: var(--transition-fast), opacity 0.8s ease;
 }
+
+/* ==========================================================================
+   COMPONENTE INTERACTIVO DE CATÁLOGOS - CENTRO DE RECURSOS (REDISEÑO GENERAL)
+   ========================================================================== */
+.catalog-section {
+    background-color: #f8fafc;
+    min-height: 85vh;
+}
+
+/* Barra de Controles y Filtros */
+.catalog-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: #ffffff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    border: 1px solid #eef2f6;
+    margin-bottom: 40px;
+}
+
+.filter-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.filter-box label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a2332;
+    white-space: nowrap;
+}
+
+.catalog-select {
+    width: 100%;
+    max-width: 280px;
+    padding: 10px 16px;
+    border: 1px solid #d8dee5;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    background-color: #ffffff;
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.catalog-select:focus {
+    border-color: #0f8ded;
+    box-shadow: 0 0 0 3px rgba(15, 141, 237, 0.15);
+}
+
+/* Buscador Local */
+.search-box-local {
+    position: relative;
+    flex: 1;
+    max-width: 400px;
+}
+
+.search-box-local input {
+    width: 100%;
+    padding: 10px 40px 10px 16px;
+    border: 1px solid #d8dee5;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.search-box-local input:focus {
+    border-color: #0f8ded;
+    box-shadow: 0 0 0 3px rgba(15, 141, 237, 0.15);
+}
+
+.search-clear {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #94a3b8;
+    cursor: pointer;
+    display: none;
+    transition: color 0.2s;
+}
+
+.search-clear:hover {
+    color: #334155;
+}
+
+/* Grid de Documentos */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+    align-items: stretch; /* Obliga a que todas las tarjetas tengan idéntica altura */
+}
+
+/* Tarjetas Remasterizadas */
+.file-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eef2f6;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Alinea contenido arriba y botones abajo uniformemente */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+}
+
+.file-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: #cbd5e1;
+}
+
+.file-card.type-catalogos::before { background-color: #0056b3; }
+.file-card.type-brochure::before { background-color: #0f8ded; }
+.file-card.type-manuales::before { background-color: #28a745; }
+
+.file-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 35px rgba(15, 141, 237, 0.1);
+}
+
+/* Tags Internos */
+.file-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.tag-catalogos { background-color: rgba(0, 86, 179, 0.1); color: #0056b3; }
+.tag-brochure { background-color: rgba(15, 141, 237, 0.1); color: #0f8ded; }
+.tag-manuales { background-color: rgba(40, 167, 69, 0.1); color: #28a745; }
+
+.file-info h3 {
+    font-size: 18px;
+    color: #1a2332;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.file-info p {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Envoltura y Botones de Acción de Alineación Fija */
+.file-actions-wrapper {
+    margin-top: auto; /* Empuja el bloque hacia la base sin importar la longitud del texto superior */
+    width: 100%;
+}
+
+.file-actions {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.btn-file {
+    flex: 1;
+    padding: 11px 16px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.btn-view {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-view:hover {
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+
+.btn-download {
+    background-color: #0b192c;
+    color: #ffffff;
+    border: 1px solid transparent;
+}
+
+.btn-download:hover {
+    background-color: #0f8ded;
+    box-shadow: 0 4px 12px rgba(15, 141, 237, 0.25);
+}
+
+.catalog-no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px dashed #cbd5e1;
+    color: #64748b;
+    font-size: 15px;
+}
+
+/* Responsividad Específica de Recursos */
+@media (max-width: 992px) {
+    .catalog-controls {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+    }
+    .catalog-select, .search-box-local {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .file-actions {
+        flex-direction: column;
+    }
+    .btn-file {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   REDISEÑO DEL FOOTER DE 3 COLUMNAS
+   ========================================================================== */
+.main-footer {
+    background-color: var(--dark-color);
+    color: #a0aec0; /* Un gris un poco más claro para mejor accesibilidad y lectura */
+    padding: 80px 0 0 0;
+    font-family: var(--font-main);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.footer-col h3 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.footer-bar {
+    width: 35px;
+    height: 3px;
+    background-color: #0F8DED; /* Azul brillante corporativo */
+    margin-bottom: 25px;
+    border-radius: 2px;
+}
+
+.footer-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #a0aec0;
+    margin-bottom: 25px;
+}
+
+/* --- COLUMNA DE REDES SOCIALES --- */
+.social-links-container {
+    display: flex;
+    gap: 12px;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: var(--transition-fast);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.social-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.social-btn.linkedin:hover {
+    background-color: #0077b5; /* Azul LinkedIn oficial */
+    border-color: #0077b5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
+}
+
+/* --- COLUMNA DE CONTACTO CORPORATIVO --- */
+.footer-contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.footer-icon-box {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(15, 141, 237, 0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.footer-icon-box svg {
+    width: 15px;
+    height: 15px;
+    fill: #0F8DED;
+}
+
+.footer-text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.footer-text-box strong {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+}
+
+.footer-text-box span, 
+.footer-text-box a {
+    font-size: 14px;
+    color: #cbd5e1;
+    text-decoration: none;
+    line-height: 1.4;
+    transition: var(--transition-fast);
+}
+
+.footer-text-box a:hover {
+    color: #0F8DED;
+}
+
+.footer-text-box .info-meta {
+    font-size: 12px;
+    color: #718096;
+    margin-top: 1px;
+}
+
+/* --- COLUMNA DE RECURSOS --- */
+.footer-resource-list {
+    list-style: none;
+}
+
+.resource-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    padding: 15px;
+    border-radius: 8px;
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transition-fast);
+}
+
+.resource-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: #0F8DED;
+    display: block;
+}
+
+.resource-link:hover {
+    background-color: rgba(15, 141, 237, 0.05);
+    border-color: #0F8DED;
+    color: #ffffff;
+}
+
+/* --- BASE FINAL DEL FOOTER --- */
+.footer-bottom {
+    background-color: #0b0b0b;
+    padding: 25px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bottom-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #718096;
+}
+
+/* Adaptabilidad para pantallas medianas y móviles */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-footer {
+        padding: 60px 0 0 0;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        margin-bottom: 40px;
+    }
+    .bottom-flex {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   NUEVA SECCIÓN DE PROVEEDORES INTERACTIVOS
+   ========================================================================== */
+.suppliers-section {
+    background-color: #fcfdfe;
+    padding: 80px 0;
+    border-top: 1px solid #eef2f5;
+}
+
+.suppliers-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.supplier-group {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+    transition: var(--transition-fast);
+}
+
+/* Botón de control de Colapso */
+.supplier-toggle-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0b192c; /* Acoplado al color corporativo secundario de los controles */
+    border: none;
+    padding: 18px 25px;
+    color: #ffffff;
+    font-family: var(--font-main);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.supplier-toggle-btn:hover {
+    background-color: #0F8DED; /* Resalta en azul brillante al pasar el cursor */
+}
+
+.supplier-toggle-btn .toggle-icon {
+    font-size: 12px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Estado activo del botón y rotación del icono */
+.supplier-toggle-btn.active {
+    background-color: #0056b3; /* Color primario cuando el panel está visible */
+}
+
+.supplier-toggle-btn.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+/* Transición animada de CSS para ocultado y visualización fluida */
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+}
+
+.collapsible-content.open {
+    max-height: 5000px; /* Suficiente para contener las subsecciones con imágenes */
+    opacity: 1;
+}
+
+/* Estilo de las Subsecciones */
+.supplier-subsection {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.supplier-subsection:last-child {
+    border-bottom: none;
+}
+
+/* Banner que ocupa todo el ancho de la página */
+.subsection-banner {
+    width: 100%;
+    height: 450px; /* Altura ideal de impacto visual */
+    overflow: hidden;
+    background-color: #f0f4f8;
+}
+
+.subsection-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.supplier-subsection:hover .subsection-banner img {
+    transform: scale(1.02); /* Animación sutil de zoom */
+}
+
+
+/* Área de descripción de texto estructurada estilo Ficha Técnica */
+.subsection-desc {
+    padding: 40px;
+    background-color: #ffffff;
+    font-family: var(--font-main);
+}
+
+/* Badge o etiqueta superior */
+.subsection-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--primary-color);
+    background-color: rgba(0, 86, 179, 0.08);
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+/* Título de la subsección */
+.subsection-desc h3 {
+    font-size: 24px;
+    color: var(--dark-color);
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Lista de detalles técnicos */
+.subsection-spec-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* Separación entre filas */
+}
+
+.subsection-spec-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+/* Viñeta estilizada como el check de la imagen */
+.subsection-spec-list li::before {
+    content: "✓";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #0F8DED; /* Azul brillante que usas en los recursos */
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 2px;
+    min-width: 18px;
+}
+
+/* Enfoque responsivo */
+@media (max-width: 768px) {
+    .subsection-desc {
+        padding: 25px 20px;
+    }
+    .subsection-desc h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .subsection-spec-list li {
+        font-size: 14px;
+    }
+}
