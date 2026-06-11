@@ -144,19 +144,44 @@ body {
 
 /* Menú Hamburguesa para Móviles */
 .hamburger {
-    display: none;
+    display: none; 
     cursor: pointer;
     background: none;
     border: none;
     flex-direction: column;
     gap: 6px;
+    padding: 5px;
+    z-index: 1002;
 }
 
 .hamburger span {
+    display: block;
     width: 25px;
     height: 3px;
     background-color: #111111;
-    transition: var(--transition-fast);
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+    transform-origin: 1px center; /* Define el punto de pivote ideal para el giro */
+}
+
+/* --- ESTADO ACTIVO: Transformación en una X --- */
+
+/* La primera línea gira 45 grados hacia abajo */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(1px, 1px);
+    background-color: var(--primary-color); /* Opcional: cambia de color al activarse */
+}
+
+/* La línea del medio se desvanece moviéndose hacia la izquierda */
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+/* La tercera línea gira 45 grados hacia arriba */
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(1px, -1px);
+    background-color: var(--primary-color); /* Opcional: cambia de color al activarse */
 }
 
 /* ESTILO DEL NUEVO BOTÓN DE WEBMAIL (SOBRE ELECTRÓNICO) */
@@ -797,28 +822,151 @@ img {
 }
 
 @media (max-width: 768px) {
-    .hamburger { display: flex; }
+    /* ==========================================================================
+       1. MENÚ HAMBURGUESA: Estructura, Visibilidad y Animación a X
+       ========================================================================== */
+    .hamburger { 
+        display: flex; 
+        cursor: pointer;
+        background: none;
+        border: none;
+        flex-direction: column;
+        gap: 6px;
+        padding: 5px;
+        /* CRÍTICO: Debe ser el elemento más alto (1005) para poder hacer clic en la X y cerrar el menú */
+        z-index: 1005; 
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--primary-color); 
+        border-radius: 3px;
+        transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+        transform-origin: 1px center;
+    }
+
+    /* Transformación de las líneas en una 'X' cuando el menú está activo */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(1px, 1px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(1px, -1px);
+    }
+
+
+    /* ==========================================================================
+       2. MENÚ DESPLEGABLE MÓVIL
+       ========================================================================== */
     .nav-menu {
         position: fixed;
         top: 0;
         right: -100%;
         height: 100vh;
         width: 70%;
-        background-color: rgba(17, 17, 17, 0.98);
+        background-color: #ffffff; 
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15); 
         flex-direction: column;
         justify-content: center;
         align-items: center;
         transition: var(--transition-fast);
+        /* CORRECCIÓN: Capa intermedia alta (1000) para cubrir el resto de la web */
+        z-index: 1000;
+        padding: 40px 0;
     }
-    .nav-menu.active { right: 0; }
-    .vertical-item, .row-reverse { flex-direction: column; gap: 20px; }
-    .item-img-box { max-width: 100%; height: 220px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-    .bottom-flex { flex-direction: column; gap: 10px; text-align: center; }
-    .search-container { margin: 10px 0; order: -1; width: 80%; }
-    #global-search-form { width: 100%; }
-    #search-input { width: 100% !important; }
-    .webmail-container { margin-right: 15px; }
+
+    .nav-menu.active { 
+        right: 0; 
+    }
+
+    /* Estilos para las letras del menú móvil */
+    .nav-menu .nav-link {
+        display: block;
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 18px;
+        font-weight: 600; 
+        text-align: center;
+        text-decoration: none;
+        color: var(--primary-color) !important; 
+        border-bottom: 1px solid #f0f4f8; 
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-menu .nav-link:hover,
+    .nav-menu .nav-link:active {
+        background-color: #f4f8fc; 
+        color: #003d82 !important; 
+    }
+
+
+    /* ==========================================================================
+       3. ELEMENTOS QUE DEBEN QUEDAR DETRÁS DEL MENÚ
+       ========================================================================== */
+    
+    /* Ícono del sobre de correo electrónico (Webmail en la barra) */
+    .webmail-container { 
+        margin-right: 15px; 
+        /* CORRECCIÓN: Se le asigna una capa inferior a la del menú (1000) */
+        position: relative; 
+        z-index: 990; 
+    }
+
+
+    /* ==========================================================================
+       4. REESTRUCTURACIÓN Y RESPONSIVIDAD GENERAL (Tus estilos originales)
+       ========================================================================== */
+    .vertical-item, .row-reverse { 
+        flex-direction: column; 
+        gap: 20px; 
+    }
+    
+    .item-img-box { 
+        max-width: 100%; 
+        height: 220px; 
+    }
+    
+    .footer-grid { 
+        grid-template-columns: 1fr; 
+        gap: 30px; 
+    }
+    
+    .bottom-flex { 
+        flex-direction: column; 
+        gap: 10px; 
+        text-align: center; 
+    }
+    
+    .search-container { 
+        margin: 10px 0; 
+        order: -1; 
+        width: 80%; 
+    }
+    
+    #global-search-form { 
+        width: 100%; 
+    }
+    
+    #search-input { 
+        width: 100% !important; 
+    }
+}
+
+/* ==========================================================================
+   5. AJUSTE APARTE: BOTÓN FLOTANTE DE WHATSAPP
+   ========================================================================== */
+/* Nota: Este estilo se coloca FUERA del @media query anterior para asegurar que 
+   el botón de WhatsApp respete el orden de capas tanto en móvil como en escritorio. */
+.whatsapp-float {
+    /* CORRECCIÓN: Capa inferior a la del menú móvil (1000) */
+    z-index: 995 !important; 
 }
 
 /* ==========================================================================
