@@ -23,9 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 3. CONTROL DEL MENÚ MÓVIL \n    
+    // 3. CONTROL DEL MENÚ MÓVIL
     // ==========================================
-
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
@@ -52,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 5. MOTOR DE BÚSQUEDA GLOBAL INDEXADO
+    // 5. MOTOR DE BÚSQUEDA GLOBAL INDEXADO (CORREGIDO MULTI-INPUT)
     // ==========================================
     const siteIndex = [
         { url: "index.html", title: "Inicio", content: "infraestructura resiliencia energetica carga vehicular alta potencia transformacion digital soluciones almacenamiento energia baterias krysweb gracenergy" },
@@ -60,74 +59,86 @@ document.addEventListener('DOMContentLoaded', () => {
         { url: "nosotros.html", title: "Nosotros / Empresa", content: "trayectoria mision vision valores ingenieria expertos ecuador eficiencia calidad equipo tecnico especialistas seguridad sustentabilidad industrial" },
         { url: "soluciones.html", title: "Soluciones", content: "sistemas de almacenamiento cargadores vehiculos electricos microrredes hibridas subestaciones plantas industriales automatizacion control ingenieria a medida" },
         { url: "productos.html", title: "Productos", content: "inversores industriales celdas de media tension transformadores de potencia modulos de baterias litio monitoreo inteligente medidores cables conectores" },
-        { url: "descargas.html", title: "Descargas", content: "descargas pdf fichas tecnicas folletos corporativos specifications tecnicas manuales operacion certifications industriales gratis" },
+        { url: "recursos.html", title: "Recursos", content: "descargas pdf fichas tecnicas folletos corporativos specifications tecnicas manuales operacion certifications industriales gratis" },
         { url: "contacto.html", title: "Contactos", content: "formulario solicitud informacion correo electronico telefono direccion quito ecuador atencion al cliente cotizaciones presupuestos christian chavez webmail log-in" }
     ];
 
-    const searchForm = document.getElementById('global-search-form');
-    const searchInput = document.getElementById('search-input');
-    const resultsBox = document.getElementById('search-results-dropdown');
+    // Seleccionamos todos los formularios y cajas de texto de búsqueda del sitio (tanto ID tradicional como Clases nuevas)
+    const searchForms = document.querySelectorAll('.global-search-form, #global-search-form');
 
-    if (searchForm && searchInput && resultsBox) {
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase().trim();
-            resultsBox.innerHTML = '';
+    searchForms.forEach(form => {
+        const searchInput = form.querySelector('.search-input, #search-input');
+        // Buscamos la caja de resultados asociada dentro del mismo contenedor padre
+        const container = form.closest('.search-container');
+        const resultsBox = container ? container.querySelector('.search-results-box') : null;
 
-            if (query.length < 2) {
-                resultsBox.classList.remove('active');
-                return;
-            }
+        if (searchInput && resultsBox) {
+            searchInput.addEventListener('input', () => {
+                const query = searchInput.value.toLowerCase().trim();
+                resultsBox.innerHTML = '';
 
-            const matches = siteIndex.filter(page => page.content.includes(query) || page.title.toLowerCase().includes(query));
+                if (query.length < 2) {
+                    resultsBox.classList.remove('active');
+                    return;
+                }
 
-            if (matches.length > 0) {
-                matches.forEach(match => {
-                    const indexPos = match.content.indexOf(query);
-                    const start = Math.max(0, indexPos - 20);
-                    const end = Math.min(match.content.length, indexPos + query.length + 40);
-                    const snippet = "..." + match.content.substring(start, end) + "...";
+                const matches = siteIndex.filter(page => page.content.includes(query) || page.title.toLowerCase().includes(query));
 
-                    const item = document.createElement('div');
-                    item.className = 'search-item';
-                    item.innerHTML = `
-                        <a href="${match.url}">
-                            <div class="search-item-title">${match.title}</div>
-                            <div class="search-item-text">${snippet}</div>
-                        </a>
-                    `;
-                    resultsBox.appendChild(item);
-                });
-            } else {
-                resultsBox.innerHTML = `<div class="search-no-results">No se encontraron resultados para "${searchInput.value}"</div>`;
-            }
+                if (matches.length > 0) {
+                    matches.forEach(match => {
+                        const indexPos = match.content.indexOf(query);
+                        const start = Math.max(0, indexPos - 20);
+                        const end = Math.min(match.content.length, indexPos + query.length + 40);
+                        const snippet = "..." + match.content.substring(start, end) + "...";
 
-            resultsBox.classList.add('active');
-        });
+                        const item = document.createElement('div');
+                        item.className = 'search-item';
+                        item.innerHTML = `
+                            <a href="${match.url}">
+                                <div class="search-item-title">${match.title}</div>
+                                <div class="search-item-text">${snippet}</div>
+                            </a>
+                        `;
+                        resultsBox.appendChild(item);
+                    });
+                } else {
+                    resultsBox.innerHTML = `<div class="search-no-results">No se encontraron resultados para "${searchInput.value}"</div>`;
+                }
 
-        document.addEventListener('click', (e) => {
-            if (!searchForm.contains(e.target) && !resultsBox.contains(e.target)) {
-                resultsBox.classList.remove('active');
-            }
-        });
-    }
+                resultsBox.classList.add('active');
+            });
+
+            // Prevenir recarga de página al presionar Enter o hacer submit
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+            });
+
+            // Cerrar el dropdown al hacer clic en cualquier otra parte fuera del buscador específico
+            document.addEventListener('click', (e) => {
+                if (!form.contains(e.target) && !resultsBox.contains(e.target)) {
+                    resultsBox.classList.remove('active');
+                }
+            });
+        }
+    });
 
     // ==========================================
     // 6. INTERACTIVIDAD DEL CARRUSEL EN MEDIA LUNA
     // ==========================================
-    const items = document.querySelectorAll('.arc-item');
+    const arcItems = document.querySelectorAll('.arc-item');
     const details = document.querySelectorAll('.arc-detail-content');
     const prevBtn = document.getElementById('arc-prev-btn');
     const nextBtn = document.getElementById('arc-next-btn');
     
     let currentIndex = 0;
-    const totalItems = items.length;
+    const totalItems = arcItems.length;
     const intervalTime = 5000; 
     let autoSlideTimer;
 
     function updateArcCarousel() {
-        if (items.length === 0) return;
+        if (arcItems.length === 0) return;
 
-        items.forEach((item, idx) => {
+        arcItems.forEach((item, idx) => {
             item.classList.remove('active', 'prev', 'next', 'hidden-back');
 
             if (idx === currentIndex) {
@@ -165,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         autoSlideTimer = setInterval(nextArcSlide, intervalTime);
     }
 
-    if (items.length > 0 && details.length > 0) {
+    if (arcItems.length > 0 && details.length > 0) {
         updateArcCarousel();
         resetAutoSlide();
 
@@ -185,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 7. SISTEMA DE CATÁLOGOS CON ASYNC JSON (CORREGIDO Y OPTIMIZADO)
+    // 7. SISTEMA DE CATÁLOGOS CON ASYNC JSON
     // ==========================================
     const catalogGrid = document.getElementById('catalog-grid');
     const categorySelect = document.getElementById('category-select');
@@ -195,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (catalogGrid && categorySelect && catalogSearch) {
         let docsDatabase = [];
 
-        // Mapeo dinámico de etiquetas limpias según la categoría
         function getCleanLabel(category) {
             const labels = {
                 'catalogos': 'Catálogo Técnico',
@@ -246,8 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const filteredDocs = docsDatabase.filter(doc => {
                 const matchesCategory = (selectedCategory === 'all' || doc.category === selectedCategory);
-                
-                // SEO Interno: Busca coincidencias en títulos, descripciones y en el arreglo de keywords
                 const matchesSearch = (
                     doc.title_es.toLowerCase().includes(searchQuery) || 
                     doc.description_es.toLowerCase().includes(searchQuery) ||
@@ -310,9 +318,8 @@ document.addEventListener('DOMContentLoaded', () => {
             cardObserver.observe(card);
         });
     }
-});
 
-// ==========================================
+    // ==========================================
     // 9. INTERACTIVIDAD DE ACORDEÓN DE PROVEEDORES
     // ==========================================
     const toggleButtons = document.querySelectorAll('.supplier-toggle-btn');
@@ -323,10 +330,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetContent = document.getElementById(targetId);
 
             if (targetContent) {
-                // Alternar estado activo del botón (para la flecha y color)
                 button.classList.toggle('active');
 
-                // Si está colapsado, lo abrimos calculando su altura real exacta
                 if (targetContent.style.maxHeight && targetContent.style.maxHeight !== '0px') {
                     targetContent.style.maxHeight = '0px';
                     targetContent.style.opacity = '0';
@@ -339,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 10. ANIMACIÓN SCROLL REVEAL PARA LAS 4 ÁREAS
+    // 10. ANIMACIÓN SCROLL REVEAL (GLOBAL / ITEMS)
     // ==========================================
     const revealItems = document.querySelectorAll('.reveal-item');
 
@@ -353,12 +358,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    // Agrega un pequeño retraso escalonado (stagger) para un efecto más profesional
                     setTimeout(() => {
                         entry.target.classList.add('is-visible');
                     }, index * 100); 
                     
-                    // Deja de observar el elemento una vez animado para optimizar rendimiento
                     observer.unobserve(entry.target);
                 }
             });
@@ -368,33 +371,30 @@ document.addEventListener('DOMContentLoaded', () => {
             revealObserver.observe(item);
         });
     }
-    // ================================================================
-    // 11. ANIMACIÓN SCROLL REVEAL PARA LAS 4 ÁREAS - PAGINA SOLUCIONES
-    // ================================================================
-    
-    document.addEventListener("DOMContentLoaded", () => {
-    // Seleccionamos todos los elementos que queremos animar
-    const items = document.querySelectorAll('.fade-in-scroll');
 
-    // Configuración del observador
-    const observerOptions = {
-        root: null, 
-        rootMargin: "0px", 
-        threshold: 0.15 
-    };
+    // ==========================================
+    // 11. ANIMACIÓN SCROLL REVEAL (PÁGINA SOLUCIONES)
+    // ==========================================
+    const fadeScrollItems = document.querySelectorAll('.fade-in-scroll');
 
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            // Si el elemento entra en el viewport
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
+    if (fadeScrollItems.length > 0) {
+        const observerOptions = {
+            root: null, 
+            rootMargin: "0px", 
+            threshold: 0.15 
+        };
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        fadeScrollItems.forEach(item => {
+            scrollObserver.observe(item);
         });
-    }, observerOptions);
-
-    // Asignamos el observador a cada uno de los bloques de soluciones
-    items.forEach(item => {
-        scrollObserver.observe(item);
-    });
+    }
 });

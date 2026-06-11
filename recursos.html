@@ -18,31 +18,37 @@
 
 <header class="navbar" id="navbar">
     <div class="nav-container">
+        
         <a href="index.html" class="logo-container">
             <div class="logo-mock">
                 <img src="img/logo.png" alt="Logo Gracenergy" class="logo-img">
             </div>
         </a>
         
+        <div class="nav-and-stripe-wrapper">
+            <div class="corporate-stripe">
+                <p class="stripe-text">Infraestructura que no se detiene</p>
+            </div>
 
-<div class="nav-and-stripe-wrapper">
-    
-    <div class="corporate-stripe">
-        <p class="stripe-text">Infraestructura que no se detiene</p>
-    </div>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="aplicaciones.html" class="nav-link">Aplicaciones</a>
+                <a href="soluciones.html" class="nav-link">Soluciones</a>
+                <a href="productos.html" class="nav-link">Productos</a>
+                <a href="recursos.html" class="nav-link">Recursos</a>
+                <a href="contacto.html" class="nav-link">Contacto</a>
 
-    <nav class="nav-menu" id="nav-menu">
-        <a href="index.html" class="nav-link">Inicio</a>
-        <a href="aplicaciones.html" class="nav-link">Aplicaciones</a>
-        <a href="soluciones.html" class="nav-link">Soluciones</a>
-        <a href="productos.html" class="nav-link">Productos</a>
-        <a href="recursos.html" class="nav-link">Recursos</a>
-        <a href="contacto.html" class="nav-link">Contacto</a>
-    </nav>
-    
-</div>
+                <div class="search-container search-mobile-only">
+                    <form class="global-search-form" autocomplete="off">
+                        <input type="text" class="search-input" placeholder="Buscar...">
+                        <button type="submit" class="search-btn">🔍</button>
+                    </form>
+                    <div class="search-results-box"></div>
+                </div>
+            </nav>
+        </div>
         
-        <div class="search-container">
+        <div class="search-container search-desktop-only">
             <form id="global-search-form" autocomplete="off">
                 <input type="text" id="search-input" placeholder="Buscar..." required>
                 <button type="submit" id="search-btn">🔍</button>
@@ -51,7 +57,7 @@
         </div>
 
         <div class="webmail-container">
-            <a href="https://gracenergyweb.com/webmail/log-in" target="_blank" rel="noopener noreferrer" class="webmail-btn" title="Webmail">
+            <a href="https://gracenergyweb.com/webmail/log-in" target="_blank" rel="noopener noreferrer" class="webmail-btn" title="Webmail" aria-label="Acceder al Webmail">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/>
                 </svg>
@@ -61,6 +67,7 @@
         <button class="hamburger" id="hamburger" aria-label="Abrir menú">
             <span></span><span></span><span></span>
         </button>
+
     </div>
 </header>
 

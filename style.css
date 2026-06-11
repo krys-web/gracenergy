@@ -830,12 +830,12 @@ img {
 }
 
 /* ==========================================================================
-   REEMPLAZAR POR COMPLETO TU BLOQUE @media (max-width: 768px) ACTUAL
+   BLOQUE EN MEDIA QUERY: CORRECCIONES Y RESPONSIVIDAD PARA CELULARES
    ========================================================================== */
 @media (max-width: 768px) {
-    /* 1. LOGO DE LA EMPRESA (Ajuste aún más pequeño exclusivo para móviles) */
+    /* 1. LOGO DE LA EMPRESA (Adaptado a móviles) */
     .logo-mock {
-        max-width: 130px; /* El logo se encoge un poco más en pantallas móviles */
+        max-width: 130px; 
     }
 
     /* 2. MENÚ HAMBURGUESA: Estructura, Visibilidad y Animación a X */
@@ -847,8 +847,7 @@ img {
         flex-direction: column;
         gap: 6px;
         padding: 5px;
-        /* Capa superior máxima (1005) para poder presionar la X sobre el menú abierto */
-        z-index: 1005; 
+        z-index: 1005; /* Capa superior para el botón de cierre */
     }
 
     .hamburger span {
@@ -861,7 +860,6 @@ img {
         transform-origin: 1px center;
     }
 
-    /* Transformación de las líneas en una 'X' cuando el menú está activo */
     .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(1px, 1px);
     }
@@ -879,54 +877,50 @@ img {
     .nav-menu {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: -100%; 
+        width: 80%;   
+        max-width: 320px;
         height: 100vh;
-        width: 70%;
-        background-color: #ffffff; 
-        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15); 
+        background-color: rgba(15, 141, 237, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        transition: var(--transition-fast);
-        /* Capa intermedia (1000) para cubrir el resto de la web */
-        z-index: 1000;
-        padding: 40px 0;
+        gap: 30px;
+        padding: 40px;
+        transition: right 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        z-index: 1001; 
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
     }
 
     .nav-menu.active { 
         right: 0; 
     }
 
-    /* Estilos de visibilidad para los enlaces del menú móvil */
     .nav-menu .nav-link {
-        display: block;
-        width: 100%;
-        padding: 15px 20px;
         font-size: 18px;
-        font-weight: 600; 
+        font-weight: 600;
+        color: #F6F8FA;
+        width: 100%;
         text-align: center;
-        text-decoration: none;
-        color: var(--primary-color) !important; 
-        border-bottom: 1px solid #f0f4f8; 
-        transition: background-color 0.3s ease, color 0.3s ease;
+        padding: 10px 0;
+        transition: var(--transition-fast);
     }
 
     .nav-menu .nav-link:hover,
     .nav-menu .nav-link:active {
-        background-color: #f4f8fc; 
-        color: #003d82 !important; 
+       color: var(--primary-color); 
     }
 
-    /* 4. ELEMENTOS QUE DEBEN ENVIARSE DETRÁS DEL MENÚ */
-    
-    /* Ícono del sobre de correo electrónico (Webmail en la barra) */
+    /* 4. ELEMENTOS QUE SE OCULTAN DETRÁS DEL PANEL BLANCO */
     .webmail-container { 
         margin-right: 15px; 
         position: relative; 
-        z-index: 990; /* Capa por debajo de la del menú (1000) */
+        z-index: 990; 
     }
 
-    /* 5. RESPONSIVIDAD GENERAL (Tus estilos originales intactos) */
+    /* 5. RESPONSIVIDAD GENERAL (Estilos originales de tu sitio) */
     .vertical-item, .row-reverse { 
         flex-direction: column; 
         gap: 20px; 
@@ -961,13 +955,64 @@ img {
     #search-input { 
         width: 100% !important; 
     }
+
+    /* ==========================================================================
+       6. OPTIMIZACIÓN EXCLUSIVA PARA LA PÁGINA DE CONTACTO (Evita desbordamiento)
+       ========================================================================== */
+    /* Forzar a que la estructura contenedora no supere el ancho del celular */
+    .contact-container,
+    .contact-grid,
+    .contact-wrapper,
+    main,
+    section {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden; /* Corta cualquier residuo que intente salirse */
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    /* Si usas un sistema de dos columnas (Info a la izq y Formulario a la der) */
+    .contact-grid, 
+    .contact-layout {
+        display: flex !important;
+        flex-direction: column !important; /* Pasa de columnas a filas verticales */
+        gap: 30px !important;
+    }
+
+    /* Ajustar inputs, cajas de texto y el mapa de Google Maps para que midan exactamente el 100% de su celda */
+    .contact-form,
+    .contact-form form,
+    .form-group,
+    .contact-info,
+    iframe {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Asegura que los campos internos no tengan anchos fijos heredados de escritorio */
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select,
+    .contact-form button {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box; /* Incluye padding dentro del cálculo del ancho total */
+    }
+
+    /* Reducir los títulos grandes en celulares para evitar saltos de línea raros */
+    .section-title, 
+    .contact-title {
+        font-size: 24px !important;
+        text-align: center;
+    }
 }
 
 /* ==========================================================================
-   6. AJUSTE FUERA DE LA MEDIA QUERY: BOTÓN FLOTANTE DE WHATSAPP
+   7. AJUSTE APARTE: BOTÓN FLOTANTE DE WHATSAPP
    ========================================================================== */
 .whatsapp-float {
-    z-index: 995 !important; /* Capa por debajo de la del menú móvil (1000) */
+    z-index: 995 !important; 
 }
 
 /* ==========================================================================
@@ -2159,4 +2204,70 @@ img {
 #soluciones .item-info p {
     text-align: justify;
     text-justify: inter-word; 
+}
+
+/* --- ESTILOS GENERALES DE ESCRITORIO --- */
+.search-mobile-only {
+    display: none !important; /* Oculto en pantallas grandes */
+}
+
+/* --- DENTRO DE TU MEDIA QUERY ACTUAL @media (max-width: 768px) --- */
+@media (max-width: 768px) {
+    
+    /* Ocultamos el buscador que solía verse en la barra superior */
+    .search-desktop-only {
+        display: none !important;
+    }
+
+    /* Mostramos y adaptamos el buscador dentro del menú hamburguesa */
+    .search-mobile-only {
+        display: flex !important;
+        margin-top: 20px; /* Separación respecto al último enlace (Contacto) */
+        width: 85%;       /* Se adapta al ancho del menú móvil */
+        justify-content: center;
+    }
+
+    /* Forzamos a que el formulario ocupe el espacio adecuado en móvil */
+    .search-mobile-only .global-search-form {
+        display: flex;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.15); /* Fondo contrastante con el desenfoque */
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        padding: 5px 12px;
+    }
+
+    .search-mobile-only .search-input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #ffffff; /* Texto blanco para resaltar sobre el fondo azul/móvil */
+        font-size: 15px;
+        padding: 5px;
+        width: 100%;    /* Toma todo el ancho disponible */
+    }
+
+    .search-mobile-only .search-input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .search-mobile-only .search-btn {
+        background: none;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    /* Ajuste para los resultados de búsqueda flotantes en móvil */
+    .search-mobile-only .search-results-box {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(11, 25, 44, 0.98);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        z-index: 1020;
+    }
 }
